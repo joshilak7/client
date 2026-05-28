@@ -21,7 +21,7 @@ const Cars = () => {
         transmission: "Manual",
         fuelType: "Petrol",
         image:
-          "https://stimg.cardekho.com/images/carexteriorimages/930x620/Maruti/Swift/9226/1680586822716/front-left-side-47.jpg",
+          "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=1200&auto=format&fit=crop",
         description: "Perfect for city driving and budget-conscious travelers.",
         location: "Bangalore",
         rating: 4.5,
@@ -36,7 +36,7 @@ const Cars = () => {
         transmission: "Automatic",
         fuelType: "Diesel",
         image:
-          "https://stimg.cardekho.com/images/carexteriorimages/930x620/Hyundai/Creta/9824/1697697424167/front-left-side-47.jpg",
+          "https://images.unsplash.com/photo-1619767886530-3a3e0c1d3a2f?q=80&w=1200&auto=format&fit=crop",
         description:
           "Popular compact SUV with great features and fuel efficiency.",
         location: "Chennai",
@@ -52,7 +52,7 @@ const Cars = () => {
         transmission: "Automatic",
         fuelType: "Electric",
         image:
-          "https://stimg.cardekho.com/images/carexteriorimages/930x620/Tata/Tiago-EV/8778/1679909163441/front-left-side-47.jpg",
+          "https://images.unsplash.com/photo-1606611013016-969c19a6b8d3?q=80&w=1200&auto=format&fit=crop",
         description: "Go green with our electric hatchback.",
         location: "Bangalore",
         rating: 4.7,
@@ -67,7 +67,7 @@ const Cars = () => {
         transmission: "CVT",
         fuelType: "Petrol",
         image:
-          "https://stimg.cardekho.com/images/carexteriorimages/930x620/Honda/City/9421/1677914238296/front-left-side-47.jpg",
+          "https://images.unsplash.com/photo-1606611013016-969c19a6b8d3?q=80&w=1200&auto=format&fit=crop",
         description: "Reliable and comfortable sedan for family use.",
         location: "Hyderabad",
         rating: 4.6,
@@ -82,7 +82,7 @@ const Cars = () => {
         transmission: "Automatic",
         fuelType: "Electric",
         image:
-          "https://stimg.cardekho.com/images/carexteriorimages/930x620/Tata/Nexon-EV/11047/1694146347051/front-left-side-47.jpg",
+          "https://images.unsplash.com/photo-1619767886569-3c4f3f2a6c6d?q=80&w=1200&auto=format&fit=crop",
         description: "Premium electric SUV with long driving range.",
         location: "Pune",
         rating: 4.8,

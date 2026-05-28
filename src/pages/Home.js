@@ -84,17 +84,17 @@ const Home = () => {
           "https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=1200",
         rating: 4.9,
       },
-      {
-        _id: "2",
-        name: "Goa Beaches",
-        city: "Goa",
-        state: "India",
-        description:
-          "Beautiful beaches, amazing nightlife, and Portuguese architecture. Perfect for vacation.",
-        image:
-          "https://images.unsplash.com/photo-1512343879784-a960bf40e7b2?q=80&w=1200",
-        rating: 4.7,
-      },
+{
+  _id: "2",
+  name: "Goa Beaches",
+  city: "Goa",
+  state: "India",
+  description:
+    "Beautiful beaches, amazing nightlife, and Portuguese architecture. Perfect for vacation.",
+  image:
+    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop",
+  rating: 4.7,
+},
       {
         _id: "3",
         name: "Manali",
