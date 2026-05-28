@@ -23,22 +23,22 @@ const PlaceDetail = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    const fetchPlace = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/places/${id}`,
+        );
+
+        setPlace(response.data.place);
+      } catch (error) {
+        console.error("Error fetching place:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchPlace();
   }, [id]);
-
-  const fetchPlace = async () => {
-    try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/places/${id}`,
-      );
-
-      setPlace(response.data.place);
-    } catch (error) {
-      console.error("Error fetching place:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const calculateTotalPrice = () => {
     return place.entryFee * booking.guests;
@@ -93,6 +93,7 @@ const PlaceDetail = () => {
 
         <div style={styles.overlay}>
           <h1 style={styles.heroTitle}>{place.name}</h1>
+
           <p style={styles.heroLocation}>
             📍 {place.city}, {place.state}, {place.country}
           </p>

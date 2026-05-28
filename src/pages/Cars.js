@@ -8,36 +8,7 @@ const Cars = () => {
   const [filteredCars, setFilteredCars] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchCars();
-  }, []);
-
-  const fetchCars = async () => {
-    try {
-      setLoading(true);
-
-      const response = await api.get("/cars");
-
-      if (response.data && response.data.cars) {
-        const normalCars = response.data.cars.filter(
-          (car) => !["Mercedes-Benz", "BMW", "Audi"].includes(car.brand),
-        );
-
-        setCars(normalCars);
-        setFilteredCars(normalCars);
-      }
-    } catch (error) {
-      console.log("Using Demo Cars");
-
-      const demoCars = getDemoCars();
-      setCars(demoCars);
-      setFilteredCars(demoCars);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Demo Cars with Working Images
+  // Demo Cars
   const getDemoCars = () => {
     return [
       {
@@ -118,6 +89,36 @@ const Cars = () => {
       },
     ];
   };
+
+  useEffect(() => {
+    const fetchCars = async () => {
+      try {
+        setLoading(true);
+
+        const response = await api.get("/cars");
+
+        if (response.data && response.data.cars) {
+          const normalCars = response.data.cars.filter(
+            (car) => !["Mercedes-Benz", "BMW", "Audi"].includes(car.brand),
+          );
+
+          setCars(normalCars);
+          setFilteredCars(normalCars);
+        }
+      } catch (error) {
+        console.log("Using Demo Cars");
+
+        const demoCars = getDemoCars();
+
+        setCars(demoCars);
+        setFilteredCars(demoCars);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCars();
+  }, []);
 
   const handleSearch = (query) => {
     if (!query.trim()) {

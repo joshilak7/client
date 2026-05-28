@@ -9,31 +9,31 @@ const Places = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const fetchPlaces = async () => {
+      try {
+        setLoading(true);
+
+        const response = await api.get("/places");
+
+        if (response.data && response.data.places) {
+          setPlaces(response.data.places);
+          setFilteredPlaces(response.data.places);
+        }
+      } catch (error) {
+        console.log("Using Demo Places");
+
+        const demoPlaces = getDemoPlaces();
+        setPlaces(demoPlaces);
+        setFilteredPlaces(demoPlaces);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchPlaces();
   }, []);
 
-  const fetchPlaces = async () => {
-    try {
-      setLoading(true);
-
-      const response = await api.get("/places");
-
-      if (response.data && response.data.places) {
-        setPlaces(response.data.places);
-        setFilteredPlaces(response.data.places);
-      }
-    } catch (error) {
-      console.log("Using Demo Places");
-
-      const demoPlaces = getDemoPlaces();
-      setPlaces(demoPlaces);
-      setFilteredPlaces(demoPlaces);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Demo Places with Fixed Images
+  // 🔥 Expanded Demo Places (MORE + HIGH QUALITY IMAGES)
   const getDemoPlaces = () => {
     return [
       {
@@ -45,94 +45,86 @@ const Places = () => {
         description:
           "One of the seven wonders of the world built with white marble.",
         image:
-          "https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=1200",
+          "https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=1400",
         rating: 4.9,
       },
-
       {
         _id: "2",
         name: "Manali",
         city: "Manali",
         state: "Himachal Pradesh",
         category: "Mountain",
-        description: "Beautiful hill station surrounded by snow mountains.",
+        description: "Snow mountains, rivers and adventure paradise.",
         image:
-          "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=1200",
+          "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1400",
         rating: 4.8,
       },
-
       {
         _id: "3",
         name: "Goa Beaches",
-        city: "Panaji",
+        city: "Goa",
         state: "Goa",
         category: "Beach",
         description: "Famous for beaches, nightlife and water sports.",
         image:
-          "https://images.unsplash.com/photo-1512343879784-a960bf40e7b2?q=80&w=1200",
+          "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1400",
         rating: 4.7,
       },
-
       {
         _id: "4",
         name: "Jaipur City Palace",
         city: "Jaipur",
         state: "Rajasthan",
         category: "Historical",
-        description: "Royal palace with beautiful architecture and museums.",
+        description: "Royal palace with rich Rajasthani architecture.",
         image:
-          "https://images.unsplash.com/photo-1599661046289-e31897846e41?q=80&w=1200",
+          "https://images.unsplash.com/photo-1599661046289-e31897846e41?q=80&w=1400",
         rating: 4.7,
       },
-
       {
         _id: "5",
         name: "Kerala Backwaters",
         city: "Alleppey",
         state: "Kerala",
         category: "Nature",
-        description: "Enjoy peaceful houseboat rides in Kerala backwaters.",
+        description: "Peaceful houseboat rides in green backwaters.",
         image:
-          "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=1200",
+          "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=1400",
         rating: 4.8,
       },
-
       {
         _id: "6",
         name: "Golden Temple",
         city: "Amritsar",
         state: "Punjab",
         category: "Temple",
-        description: "Most famous Sikh temple covered with gold.",
+        description: "Sacred Sikh temple covered in gold.",
         image:
-          "https://images.unsplash.com/photo-1588096344356-9b3f2f6c4c77?q=80&w=1200",
+          "https://images.unsplash.com/photo-1588096344356-9b3f2f6c4c77?q=80&w=1400",
         rating: 4.9,
       },
-
       {
         _id: "7",
         name: "Mysore Palace",
         city: "Mysore",
         state: "Karnataka",
         category: "Historical",
-        description: "Magnificent royal palace with colorful lighting.",
+        description: "Royal palace with night illumination.",
         image:
-          "https://images.unsplash.com/photo-1593693411515-c20261bcad6e?q=80&w=1200",
+          "https://images.unsplash.com/photo-1593693411515-c20261bcad6e?q=80&w=1400",
         rating: 4.8,
       },
-
       {
         _id: "8",
         name: "Dal Lake",
         city: "Srinagar",
         state: "Jammu & Kashmir",
         category: "Lake",
-        description: "Famous lake with beautiful houseboats and mountains.",
+        description: "Beautiful lake with houseboats and mountains.",
         image:
-          "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?q=80&w=1200",
+          "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?q=80&w=1400",
         rating: 4.9,
       },
-
       {
         _id: "9",
         name: "Rann of Kutch",
@@ -141,20 +133,41 @@ const Places = () => {
         category: "Desert",
         description: "White desert famous for Rann Utsav festival.",
         image:
-          "https://images.unsplash.com/photo-1617469165786-8007eda3caa7?q=80&w=1200",
+          "https://images.unsplash.com/photo-1617469165786-8007eda3caa7?q=80&w=1400",
         rating: 4.7,
       },
-
       {
         _id: "10",
         name: "Ooty",
         city: "Ooty",
         state: "Tamil Nadu",
         category: "Mountain",
-        description: "Cool hill station with tea gardens and lakes.",
+        description: "Tea gardens, lakes and cool weather.",
         image:
-          "https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=1200",
+          "https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=1400",
         rating: 4.6,
+      },
+      {
+        _id: "11",
+        name: "Varanasi Ghats",
+        city: "Varanasi",
+        state: "Uttar Pradesh",
+        category: "Spiritual",
+        description: "Ancient spiritual city on Ganga river.",
+        image:
+          "https://images.unsplash.com/photo-1561361058-c24cecae35ca?q=80&w=1400",
+        rating: 4.8,
+      },
+      {
+        _id: "12",
+        name: "Leh Ladakh",
+        city: "Leh",
+        state: "Ladakh",
+        category: "Mountain",
+        description: "High altitude desert with stunning views.",
+        image:
+          "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1400",
+        rating: 4.9,
       },
     ];
   };
@@ -185,6 +198,7 @@ const Places = () => {
       Nature: "🌿",
       Lake: "🏞️",
       Desert: "🏜️",
+      Spiritual: "🕉️",
     };
 
     return icons[category] || "📍";
@@ -195,7 +209,6 @@ const Places = () => {
   return (
     <div style={styles.container}>
       <h1 style={styles.title}>Explore Amazing Destinations</h1>
-
       <p style={styles.subtitle}>Discover beautiful places in India</p>
 
       <SearchBar onSearch={handleSearch} placeholder="Search places..." />
@@ -243,7 +256,6 @@ const styles = {
     maxWidth: "1300px",
     margin: "auto",
   },
-
   title: {
     textAlign: "center",
     fontSize: "42px",
@@ -251,21 +263,18 @@ const styles = {
     marginBottom: "10px",
     color: "#222",
   },
-
   subtitle: {
     textAlign: "center",
     color: "#666",
     marginBottom: "30px",
     fontSize: "18px",
   },
-
   grid: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
     gap: "25px",
     marginTop: "30px",
   },
-
   card: {
     backgroundColor: "#fff",
     borderRadius: "14px",
@@ -273,17 +282,12 @@ const styles = {
     boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
     transition: "0.3s",
   },
-
-  imageContainer: {
-    position: "relative",
-  },
-
+  imageContainer: { position: "relative" },
   image: {
     width: "100%",
     height: "230px",
     objectFit: "cover",
   },
-
   category: {
     position: "absolute",
     top: "12px",
@@ -295,7 +299,6 @@ const styles = {
     fontSize: "12px",
     fontWeight: "bold",
   },
-
   rating: {
     position: "absolute",
     top: "12px",
@@ -307,23 +310,17 @@ const styles = {
     fontSize: "12px",
     fontWeight: "bold",
   },
-
-  cardBody: {
-    padding: "20px",
-  },
-
+  cardBody: { padding: "20px" },
   placeName: {
     fontSize: "24px",
     marginBottom: "10px",
     color: "#222",
   },
-
   location: {
     color: "#666",
     marginBottom: "12px",
     fontSize: "14px",
   },
-
   description: {
     color: "#555",
     lineHeight: "1.6",

@@ -8,34 +8,6 @@ const Home = () => {
   const [featuredPlaces, setFeaturedPlaces] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const [carsRes, placesRes] = await Promise.all([
-        axios.get(`${process.env.REACT_APP_API_URL}/cars`),
-        axios.get(`${process.env.REACT_APP_API_URL}/places`),
-      ]);
-
-      if (carsRes.data?.cars) {
-        setFeaturedCars(carsRes.data.cars.slice(0, 3));
-      }
-
-      if (placesRes.data?.places) {
-        setFeaturedPlaces(placesRes.data.places.slice(0, 3));
-      }
-    } catch (error) {
-      console.log("Using Demo Data");
-
-      setFeaturedCars(getDemoCars());
-      setFeaturedPlaces(getDemoPlaces());
-    } finally {
-      setLoading(false);
-    }
-  };
-
   // Demo Cars
   const getDemoCars = () => {
     return [
@@ -46,7 +18,6 @@ const Home = () => {
         image:
           "https://stimg.cardekho.com/images/carexteriorimages/930x620/Maruti/Swift/9226/1680586822716/front-left-side-47.jpg",
       },
-
       {
         _id: "2",
         name: "Hyundai Creta",
@@ -54,7 +25,6 @@ const Home = () => {
         image:
           "https://stimg.cardekho.com/images/carexteriorimages/930x620/Hyundai/Creta/9824/1697697424167/front-left-side-47.jpg",
       },
-
       {
         _id: "3",
         name: "Tata Nexon EV",
@@ -77,7 +47,6 @@ const Home = () => {
         image:
           "https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=1200",
       },
-
       {
         _id: "2",
         name: "Goa Beaches",
@@ -87,7 +56,6 @@ const Home = () => {
         image:
           "https://images.unsplash.com/photo-1512343879784-a960bf40e7b2?q=80&w=1200",
       },
-
       {
         _id: "3",
         name: "Manali",
@@ -99,6 +67,34 @@ const Home = () => {
       },
     ];
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [carsRes, placesRes] = await Promise.all([
+          axios.get(`${process.env.REACT_APP_API_URL}/cars`),
+          axios.get(`${process.env.REACT_APP_API_URL}/places`),
+        ]);
+
+        if (carsRes.data?.cars) {
+          setFeaturedCars(carsRes.data.cars.slice(0, 3));
+        }
+
+        if (placesRes.data?.places) {
+          setFeaturedPlaces(placesRes.data.places.slice(0, 3));
+        }
+      } catch (error) {
+        console.log("Using Demo Data");
+
+        setFeaturedCars(getDemoCars());
+        setFeaturedPlaces(getDemoPlaces());
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   if (loading) return <LoadingSpinner />;
 
