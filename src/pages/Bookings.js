@@ -6,7 +6,9 @@ import LoadingSpinner from "../components/LoadingSpinner";
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { user } = useAuth();
+
+  // FIX: remove unused user
+  useAuth();
 
   useEffect(() => {
     fetchBookings();
@@ -17,7 +19,8 @@ const Bookings = () => {
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/bookings`,
       );
-      setBookings(response.data.bookings);
+
+      setBookings(response.data.bookings || []);
     } catch (error) {
       console.error("Error fetching bookings:", error);
     } finally {
@@ -31,6 +34,7 @@ const Bookings = () => {
         await axios.put(
           `${process.env.REACT_APP_API_URL}/bookings/${bookingId}/cancel`,
         );
+
         fetchBookings();
         alert("Booking cancelled successfully");
       } catch (error) {
@@ -47,7 +51,9 @@ const Bookings = () => {
       cancelled: { backgroundColor: "#dc3545", color: "#721c24" },
       completed: { backgroundColor: "#17a2b8", color: "#0c5460" },
     };
+
     const style = statusStyles[status] || statusStyles.pending;
+
     return (
       <span style={{ ...styles.badge, ...style }}>{status.toUpperCase()}</span>
     );
@@ -62,64 +68,65 @@ const Bookings = () => {
       {bookings.length === 0 ? (
         <p style={styles.noBookings}>You have no bookings yet.</p>
       ) : (
-        <div>
-          {bookings.map((booking) => (
-            <div key={booking._id} style={styles.bookingCard}>
-              <div style={styles.bookingHeader}>
-                <h3>
-                  {booking.bookingType === "car"
-                    ? booking.itemId?.name
-                    : booking.itemId?.name}
-                </h3>
-                {getStatusBadge(booking.status)}
-              </div>
-
-              <div style={styles.bookingDetails}>
-                <p>
-                  <strong>Type:</strong> {booking.bookingType.toUpperCase()}
-                </p>
-                <p>
-                  <strong>Start Date:</strong>{" "}
-                  {new Date(booking.startDate).toLocaleDateString()}
-                </p>
-                <p>
-                  <strong>End Date:</strong>{" "}
-                  {new Date(booking.endDate).toLocaleDateString()}
-                </p>
-                {booking.guests > 1 && (
-                  <p>
-                    <strong>Guests:</strong> {booking.guests}
-                  </p>
-                )}
-                <p>
-                  <strong>Total Price:</strong> ₹{booking.totalPrice}
-                </p>
-                <p>
-                  <strong>Payment Status:</strong> {booking.paymentStatus}
-                </p>
-                {booking.specialRequests && (
-                  <p>
-                    <strong>Special Requests:</strong> {booking.specialRequests}
-                  </p>
-                )}
-                <p>
-                  <strong>Booked on:</strong>{" "}
-                  {new Date(booking.createdAt).toLocaleDateString()}
-                </p>
-              </div>
-
-              {booking.status === "pending" && (
-                <button
-                  onClick={() => cancelBooking(booking._id)}
-                  className="btn btn-danger"
-                  style={styles.cancelBtn}
-                >
-                  Cancel Booking
-                </button>
-              )}
+        bookings.map((booking) => (
+          <div key={booking._id} style={styles.bookingCard}>
+            <div style={styles.bookingHeader}>
+              <h3>{booking.itemId?.name || "Booking Item"}</h3>
+              {getStatusBadge(booking.status)}
             </div>
-          ))}
-        </div>
+
+            <div style={styles.bookingDetails}>
+              <p>
+                <strong>Type:</strong> {booking.bookingType?.toUpperCase()}
+              </p>
+
+              <p>
+                <strong>Start Date:</strong>{" "}
+                {new Date(booking.startDate).toLocaleDateString()}
+              </p>
+
+              <p>
+                <strong>End Date:</strong>{" "}
+                {new Date(booking.endDate).toLocaleDateString()}
+              </p>
+
+              {booking.guests > 1 && (
+                <p>
+                  <strong>Guests:</strong> {booking.guests}
+                </p>
+              )}
+
+              <p>
+                <strong>Total Price:</strong> ₹{booking.totalPrice}
+              </p>
+
+              <p>
+                <strong>Payment Status:</strong> {booking.paymentStatus}
+              </p>
+
+              {booking.specialRequests && (
+                <p>
+                  <strong>Special Requests:</strong> {booking.specialRequests}
+                </p>
+              )}
+
+              <p>
+                <strong>Booked on:</strong>{" "}
+                {new Date(booking.createdAt).toLocaleDateString()}
+              </p>
+            </div>
+
+            {booking.status === "pending" && (
+              <button
+                onClick={() => cancelBooking(booking._id)}
+                className="btn btn-danger"
+                style={styles.cancelBtn}
+              >
+                Cancel Booking
+              </button>
+            )}
+          </div>
+        ))
       )}
     </div>
   );
