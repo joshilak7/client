@@ -23,7 +23,6 @@ const Cars = () => {
         image:
           "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=1200&auto=format&fit=crop",
         description: "Perfect for city driving and budget-conscious travelers.",
-        location: "Bangalore",
         rating: 4.5,
       },
       {
@@ -39,7 +38,6 @@ const Cars = () => {
           "https://images.unsplash.com/photo-1619767886530-3a3e0c1d3a2f?q=80&w=1200&auto=format&fit=crop",
         description:
           "Popular compact SUV with great features and fuel efficiency.",
-        location: "Chennai",
         rating: 4.6,
       },
       {
@@ -54,7 +52,6 @@ const Cars = () => {
         image:
           "https://images.unsplash.com/photo-1606611013016-969c19a6b8d3?q=80&w=1200&auto=format&fit=crop",
         description: "Go green with our electric hatchback.",
-        location: "Bangalore",
         rating: 4.7,
       },
       {
@@ -69,7 +66,6 @@ const Cars = () => {
         image:
           "https://images.unsplash.com/photo-1606611013016-969c19a6b8d3?q=80&w=1200&auto=format&fit=crop",
         description: "Reliable and comfortable sedan for family use.",
-        location: "Hyderabad",
         rating: 4.6,
       },
       {
@@ -84,7 +80,6 @@ const Cars = () => {
         image:
           "https://images.unsplash.com/photo-1619767886569-3c4f3f2a6c6d?q=80&w=1200&auto=format&fit=crop",
         description: "Premium electric SUV with long driving range.",
-        location: "Pune",
         rating: 4.8,
       },
     ];
