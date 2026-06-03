@@ -3,29 +3,363 @@
   <head>
     <meta charset="utf-8" />
     <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#007bff" />
+
+    <meta
       name="google-site-verification"
       content="4kWfLWrBSbLrHZIEiVofjq-CcEvTNMLC1pprWIKbU3g"
     />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <!-- Google Analytics 4 -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-XXXXXXXXXX");
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-XXXXXXX");
+    </script>
+
+    <!-- Primary SEO Meta Tags -->
+    <title>
+      Dhwani Tourist - Best Car Rental & Tour Packages in India | Book Taxi &
+      Sightseeing
+    </title>
+    <meta
+      name="title"
+      content="Dhwani Tourist - Best Car Rental & Tour Packages in India"
+    />
     <meta
       name="description"
-      content="Travel Booking System - Book cars and explore amazing places"
+      content="Dhwani Tourist offers premium car rental services, taxi hire, and customized tour packages across India. Book affordable cars, sightseeing tours, and holiday packages with best prices. 24/7 customer support."
     />
     <meta
-      name="google-site-verification"
-      content="4kWfLWrBSbLrHZIEiVofjq-CcEvTNMLC1pprWIKbU3g"
+      name="keywords"
+      content="car rental India, taxi service, tour packages, sightseeing, outstation taxi, airport transfer, travel agency, Dhwani Tourist, car hire, cab booking"
     />
+    <meta name="author" content="Dhwani Tourist" />
+    <meta
+      name="robots"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="googlebot-news" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="distribution" content="global" />
+    <meta name="rating" content="general" />
+
+    <!-- Google-Specific Meta Tags -->
+    <meta name="google" content="nositelinkssearchbox" />
+    <meta name="google" content="notranslate" />
+    <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
+
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dhwanitourist.com/" />
+    <meta
+      property="og:title"
+      content="Dhwani Tourist - Best Car Rental & Tour Packages"
+    />
+    <meta
+      property="og:description"
+      content="Book cars, taxis, and tour packages at best prices. Safe, reliable, and affordable travel services across India."
+    />
+    <meta
+      property="og:image"
+      content="https://dhwanitourist.com/og-image.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Dhwani Tourist" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:email" content="dhwanitourist@gmail.com" />
+    <meta property="og:phone_number" content="+919274713544" />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@dhwanitourist" />
+    <meta name="twitter:creator" content="@dhwanitourist" />
+    <meta name="twitter:url" content="https://dhwanitourist.com/" />
+    <meta
+      name="twitter:title"
+      content="Dhwani Tourist - Best Car Rental & Tour Packages"
+    />
+    <meta
+      name="twitter:description"
+      content="Premium car rental and tour packages across India. Book now for best deals!"
+    />
+    <meta
+      name="twitter:image"
+      content="https://dhwanitourist.com/twitter-image.jpg"
+    />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://dhwanitourist.com/" />
+
+    <!-- Alternate Language Versions -->
+    <link rel="alternate" href="https://dhwanitourist.com/" hreflang="en" />
+    <link rel="alternate" href="https://dhwanitourist.com/hi" hreflang="hi" />
+    <link rel="alternate" href="https://dhwanitourist.com/gu" hreflang="gu" />
+
+    <!-- Geo Tags for Local SEO -->
+    <meta name="geo.region" content="IN-GJ" />
+    <meta name="geo.placename" content="Ahmedabad, Gujarat" />
+    <meta name="geo.position" content="23.0225;72.5714" />
+    <meta name="ICBM" content="23.0225, 72.5714" />
+
+    <!-- Mobile & App Meta -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Dhwani Tourist" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.ico" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <meta
-      name="google-site-verification"
-      content="4kWfLWrBSbLrHZIEiVofjq-CcEvTNMLC1pprWIKbU3g"
+
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="preconnect" href="https://www.google-analytics.com" />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
     />
-    <title>Dhwani Tourist Test 123</title>
+
+    <!-- Google Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TravelAgency",
+        "name": "Dhwani Tourist",
+        "url": "https://dhwanitourist.com",
+        "logo": "https://dhwanitourist.com/logo.png",
+        "image": "https://dhwanitourist.com/hero-image.jpg",
+        "description": "Best car rental and tour packages provider in India. Offering taxi services, sightseeing tours, and customized travel packages.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Near City Center, Main Road",
+          "addressLocality": "Ahmedabad",
+          "addressRegion": "Gujarat",
+          "postalCode": "380001",
+          "addressCountry": "IN"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 23.0225,
+          "longitude": 72.5714
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+91-9274713544",
+          "contactType": "customer service",
+          "availableLanguage": ["English", "Hindi", "Gujarati"],
+          "areaServed": "IN"
+        },
+        "sameAs": [
+          "https://www.facebook.com/dhwanitourist",
+          "https://www.instagram.com/dhwanitourist",
+          "https://twitter.com/dhwanitourist"
+        ],
+        "priceRange": "₹₹",
+        "openingHours": "Mo-Su 00:00-23:59",
+        "paymentAccepted": [
+          "Cash",
+          "Credit Card",
+          "Debit Card",
+          "UPI",
+          "Net Banking"
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "ratingCount": "1250",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      }
+    </script>
+
+    <!-- Google Business Profile Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Dhwani Tourist Car Rental",
+        "image": "https://dhwanitourist.com/cars-image.jpg",
+        "telephone": "+91-9274713544",
+        "email": "dhwanitourist@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Main Road, Near City Center",
+          "addressLocality": "Ahmedabad",
+          "addressRegion": "Gujarat",
+          "postalCode": "380001",
+          "addressCountry": "IN"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 23.0225,
+          "longitude": 72.5714
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
+            "opens": "00:00",
+            "closes": "23:59"
+          }
+        ],
+        "priceRange": "₹₹",
+        "servesCuisine": "Travel Services",
+        "hasMap": "https://maps.google.com/?cid=YOUR_PLACE_ID",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "ratingCount": "1250"
+        }
+      }
+    </script>
+
+    <!-- Google Search Actions -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "https://dhwanitourist.com",
+        "name": "Dhwani Tourist",
+        "description": "Premium car rental and tour packages provider in India",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://dhwanitourist.com/search?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
+    <!-- Google Organization Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Dhwani Tourist",
+        "url": "https://dhwanitourist.com",
+        "logo": "https://dhwanitourist.com/logo.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+91-9274713544",
+          "contactType": "customer service",
+          "contactOption": "TollFree",
+          "areaServed": "IN",
+          "availableLanguage": ["English", "Hindi", "Gujarati"]
+        },
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Dhwani Patel"
+          }
+        ],
+        "foundingDate": "2015",
+        "foundingLocation": "Ahmedabad, India",
+        "numberOfEmployees": {
+          "@type": "QuantitativeValue",
+          "value": "25"
+        }
+      }
+    </script>
+
+    <!-- Google Breadcrumb Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://dhwanitourist.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Cars",
+            "item": "https://dhwanitourist.com/cars"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Places",
+            "item": "https://dhwanitourist.com/places"
+          }
+        ]
+      }
+    </script>
+
+    <!-- Google Sitemap Link -->
+    <link
+      rel="sitemap"
+      type="application/xml"
+      title="Sitemap"
+      href="/sitemap.xml"
+    />
+
+    <!-- Google News Meta Tags -->
+    <meta
+      name="news_keywords"
+      content="car rental, taxi service, tour packages, travel India, sightseeing"
+    />
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
   </body>

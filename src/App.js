@@ -4,6 +4,7 @@ import { AuthProvider } from "./context/AuthContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
+import GoogleAnalytics from "./components/GoogleAnalytics";
 import PrivateRoute from "./components/PrivateRoute";
 import Home from "./pages/Home";
 import Cars from "./pages/Cars";

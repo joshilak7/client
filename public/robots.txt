@@ -1,3 +1,46 @@
-# https://www.robotstxt.org/robotstxt.html
+# Google Robots.txt for Dhwani Tourist
+User-agent: Googlebot
+Allow: /
+Allow: /cars
+Allow: /places
+Allow: /bookings
+Allow: /about
+Allow: /contact
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /auth/
+
+# Crawl-delay for Google
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://dhwanitourist.com/sitemap.xml
+
+# Google News
+User-agent: Googlebot-News
+Allow: /
+
+# Google Images
+User-agent: Googlebot-Image
+Allow: /*.jpg$
+Allow: /*.png$
+Allow: /*.jpeg$
+
+# Google Video
+User-agent: Googlebot-Video
+Allow: /
+
+# Google Adsense
+User-agent: Mediapartners-Google
+Allow: /
+
+# All other bots
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+
+# Host directive
+Host: https://dhwanitourist.com

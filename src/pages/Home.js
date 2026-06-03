@@ -70,7 +70,7 @@ const Home = () => {
     ];
   };
 
-  // Demo Places (without entry fee)
+  // Demo Places (without entry fee) - Fixed Goa image URL
   const getDemoPlaces = () => {
     return [
       {
@@ -81,20 +81,20 @@ const Home = () => {
         description:
           "World famous white marble monument and wonder of the world. A symbol of eternal love.",
         image:
-          "https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=1200",
+          "https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=1200&auto=format&fit=crop",
         rating: 4.9,
       },
-{
-  _id: "2",
-  name: "Goa Beaches",
-  city: "Goa",
-  state: "India",
-  description:
-    "Beautiful beaches, amazing nightlife, and Portuguese architecture. Perfect for vacation.",
-  image:
-    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop",
-  rating: 4.7,
-},
+      {
+        _id: "2",
+        name: "Goa Beaches",
+        city: "Goa",
+        state: "India",
+        description:
+          "Beautiful beaches, amazing nightlife, and Portuguese architecture. Perfect for vacation.",
+        image:
+          "https://images.unsplash.com/photo-1512343879784-a960bf40e7b2?q=80&w=1200&auto=format&fit=crop",
+        rating: 4.7,
+      },
       {
         _id: "3",
         name: "Manali",
@@ -103,7 +103,7 @@ const Home = () => {
         description:
           "Snow-capped mountains, adventure sports, and beautiful hill station views.",
         image:
-          "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=1200",
+          "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=1200&auto=format&fit=crop",
         rating: 4.8,
       },
       {
@@ -114,7 +114,7 @@ const Home = () => {
         description:
           "Royal palace complex with museums, courtyards, and stunning architecture.",
         image:
-          "https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=1200",
+          "https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=1200&auto=format&fit=crop",
         rating: 4.6,
       },
     ];
@@ -171,13 +171,13 @@ const Home = () => {
           axios.get(`${process.env.REACT_APP_API_URL}/places`),
         ]);
 
-        if (carsRes.data?.cars) {
+        if (carsRes.data?.cars && carsRes.data.cars.length > 0) {
           setFeaturedCars(carsRes.data.cars.slice(0, 4));
         } else {
           setFeaturedCars(getDemoCars());
         }
 
-        if (placesRes.data?.places) {
+        if (placesRes.data?.places && placesRes.data.places.length > 0) {
           setFeaturedPlaces(placesRes.data.places.slice(0, 4));
         } else {
           setFeaturedPlaces(getDemoPlaces());
@@ -290,7 +290,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Featured Cars - Without Price and Book Now Button */}
+      {/* Featured Cars */}
       <section style={styles.sectionLight}>
         <div style={styles.container}>
           <div style={styles.headingContainer}>
@@ -316,6 +316,7 @@ const Home = () => {
                     }
                     alt={car.name}
                     style={styles.cardImg}
+                    loading="lazy"
                     onError={(e) => {
                       e.target.src =
                         "https://via.placeholder.com/400x250?text=Car+Image";
@@ -336,9 +337,8 @@ const Home = () => {
                     <span>⚡ {car.type}</span>
                   </div>
                   <p style={styles.cardText}>
-                    {car.description.substring(0, 100)}...
+                    {car.description?.substring(0, 100) || car.description}...
                   </p>
-                  {/* Removed price and Book Now button */}
                 </div>
               </div>
             ))}
@@ -346,7 +346,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Popular Destinations - Without Entry Fee and View Details Button */}
+      {/* Popular Destinations */}
       <section style={styles.section}>
         <div style={styles.container}>
           <div style={styles.headingContainer}>
@@ -371,6 +371,7 @@ const Home = () => {
                   }
                   alt={place.name}
                   style={styles.cardImg}
+                  loading="lazy"
                   onError={(e) => {
                     e.target.src =
                       "https://via.placeholder.com/400x250?text=Place+Image";
@@ -389,9 +390,9 @@ const Home = () => {
                     {place.city}, {place.state}
                   </p>
                   <p style={styles.cardText}>
-                    {place.description.substring(0, 100)}...
+                    {place.description?.substring(0, 100) || place.description}
+                    ...
                   </p>
-                  {/* Removed entry fee and View Details button */}
                 </div>
               </div>
             ))}
@@ -422,6 +423,7 @@ const Home = () => {
                   src={testimonials[currentTestimonial].image}
                   alt={testimonials[currentTestimonial].name}
                   style={styles.testimonialImage}
+                  loading="lazy"
                 />
               </div>
               <div style={styles.testimonialContent}>
@@ -493,7 +495,7 @@ const Home = () => {
 const styles = {
   hero: {
     backgroundImage:
-      "url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600')",
+      "url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop')",
     backgroundSize: "cover",
     backgroundPosition: "center",
     minHeight: "500px",
@@ -541,10 +543,9 @@ const styles = {
     color: "#fff",
     fontWeight: "600",
     transition: "all 0.3s",
-    display: "inline-block",
-    minHeight: "50px",
     display: "flex",
     alignItems: "center",
+    minHeight: "50px",
   },
   heroBtnSecondary: {
     padding: "14px 32px",
@@ -556,10 +557,9 @@ const styles = {
     fontWeight: "600",
     border: "2px solid #fff",
     transition: "all 0.3s",
-    display: "inline-block",
-    minHeight: "50px",
     display: "flex",
     alignItems: "center",
+    minHeight: "50px",
   },
   container: {
     maxWidth: "1200px",
@@ -601,10 +601,10 @@ const styles = {
     borderRadius: "8px",
     textDecoration: "none",
     fontWeight: "bold",
-    display: "inline-block",
-    minHeight: "44px",
     display: "flex",
     alignItems: "center",
+    minHeight: "44px",
+    transition: "all 0.3s",
   },
   featuresGrid: {
     display: "grid",
@@ -619,6 +619,7 @@ const styles = {
     borderRadius: "12px",
     boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
     transition: "transform 0.3s",
+    cursor: "pointer",
   },
   featureIcon: {
     marginBottom: "20px",
@@ -645,6 +646,7 @@ const styles = {
     overflow: "hidden",
     boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
     transition: "transform 0.3s",
+    cursor: "pointer",
   },
   cardImageWrapper: {
     position: "relative",
@@ -867,13 +869,13 @@ const styles = {
 const styleSheet = document.createElement("style");
 styleSheet.textContent = `
   /* Hover effects */
-  .btn-primary:hover {
+  .hero-btn-primary:hover {
     background-color: #0056b3 !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
   }
   
-  .btn-secondary:hover {
+  .hero-btn-secondary:hover {
     background-color: rgba(255, 255, 255, 0.1) !important;
     transform: translateY(-2px);
   }
@@ -885,16 +887,18 @@ styleSheet.textContent = `
   
   .feature-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
   }
   
   .testimonial-nav:hover {
     background-color: #007bff !important;
     color: #fff !important;
+    transform: scale(1.1);
   }
   
   .more-btn:hover {
     background-color: #c82333 !important;
-    transform: translateY(-1px);
+    transform: translateX(5px);
   }
   
   .cta-btn-primary:hover {
@@ -903,8 +907,12 @@ styleSheet.textContent = `
   }
   
   .cta-btn-secondary:hover {
-    background-color: rgba(255,255,255,0.1) !important;
+    background-color: rgba(255,255,255,0.15) !important;
     transform: translateY(-2px);
+  }
+  
+  .dot:hover {
+    transform: scale(1.3);
   }
   
   /* Responsive styles */
@@ -937,6 +945,10 @@ styleSheet.textContent = `
     .testimonial-nav {
       width: 36px;
       height: 36px;
+    }
+    
+    .section-title {
+      font-size: 28px !important;
     }
   }
   
@@ -980,6 +992,15 @@ styleSheet.textContent = `
       max-width: 250px;
       justify-content: center;
     }
+    
+    .testimonial-image-wrapper {
+      width: 60px;
+      height: 60px;
+    }
+    
+    .testimonial-star {
+      font-size: 14px;
+    }
   }
   
   /* Touch-friendly improvements */
@@ -988,10 +1009,21 @@ styleSheet.textContent = `
     a,
     [role="button"] {
       min-height: 44px;
+      min-width: 44px;
     }
     
     .more-btn {
       min-height: 40px;
+    }
+    
+    .testimonial-nav {
+      min-width: 44px;
+      min-height: 44px;
+    }
+    
+    .dot {
+      min-width: 10px;
+      min-height: 10px;
     }
   }
   
@@ -1000,6 +1032,10 @@ styleSheet.textContent = `
     .hero {
       height: auto;
       min-height: 400px;
+    }
+    
+    .testimonial-container {
+      max-width: 90%;
     }
   }
   
@@ -1025,6 +1061,22 @@ styleSheet.textContent = `
     .feature-title {
       color: #fff;
     }
+    
+    .testimonial-card {
+      background-color: #2a2a2a;
+    }
+    
+    .testimonial-text {
+      color: #ccc;
+    }
+    
+    .testimonial-name {
+      color: #fff;
+    }
+    
+    .rating {
+      background-color: #3a3a3a;
+    }
   }
   
   /* Smooth animations */
@@ -1041,6 +1093,27 @@ styleSheet.textContent = `
   
   .card {
     animation: fadeIn 0.5s ease;
+  }
+  
+  .feature-card {
+    animation: fadeIn 0.5s ease;
+  }
+  
+  /* Loading state */
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+  }
+  
+  /* Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 `;
 
