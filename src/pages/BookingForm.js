@@ -39,7 +39,6 @@ const BookingForm = () => {
 
   const [errors, setErrors] = useState({});
 
-  // Get carId or placeId from URL params
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const carId = params.get("carId");
@@ -65,20 +64,16 @@ const BookingForm = () => {
       setPlaces(placesRes.data.places || []);
     } catch (error) {
       console.error("Error fetching data:", error);
-      // Demo cars
       setCars([
         { _id: "1", name: "Maruti Suzuki Swift" },
         { _id: "2", name: "Hyundai Creta" },
         { _id: "3", name: "Tata Nexon EV" },
         { _id: "4", name: "Toyota Innova" },
-        { _id: "5", name: "Honda City" },
-        { _id: "6", name: "Mahindra XUV700" },
       ]);
       setPlaces([
         { _id: "1", name: "Taj Mahal", city: "Agra" },
         { _id: "2", name: "Goa Beaches", city: "Goa" },
         { _id: "3", name: "Manali", city: "Himachal" },
-        { _id: "4", name: "Jaipur City Palace", city: "Jaipur" },
       ]);
     }
   };
@@ -140,6 +135,43 @@ const BookingForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  // Function to send WhatsApp message
+  const sendWhatsAppMessage = () => {
+    // Create message content
+    let message = `*NEW BOOKING REQUEST*%0A%0A`;
+    message += `*Customer Details*%0A`;
+    message += `👤 Name: ${formData.fullName}%0A`;
+    message += `📞 Phone: ${formData.phone}%0A`;
+    message += `📧 Email: ${formData.email}%0A%0A`;
+
+    message += `*Trip Details*%0A`;
+    message += `🚗 Service: ${formData.service === "car" ? "Car Rental" : formData.service === "tour" ? "Tour Package" : "Both"}%0A`;
+
+    if (formData.carName) {
+      message += `🚙 Car: ${formData.carName}%0A`;
+    }
+    if (formData.placeName) {
+      message += `📍 Destination: ${formData.placeName}%0A`;
+    }
+
+    message += `📅 Travel Date: ${formData.pickupDate}%0A`;
+    message += `📍 Pickup Location: ${formData.pickupLocation}%0A`;
+    message += `👥 Passengers: ${formData.passengers}%0A`;
+
+    if (formData.message) {
+      message += `%0A*Special Requests*%0A${formData.message}%0A`;
+    }
+
+    message += `%0A_This is an automated booking request from Dhwani Tourist Website_`;
+
+    // WhatsApp number (without +)
+    const whatsappNumber = "919274713544";
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+    // Open WhatsApp in new tab
+    window.open(whatsappUrl, "_blank");
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) {
@@ -150,6 +182,7 @@ const BookingForm = () => {
     setLoading(true);
 
     try {
+      // Send to backend
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/bookings/inquiry`,
         formData,
@@ -160,17 +193,22 @@ const BookingForm = () => {
           `Booking request sent! ID: ${response.data.bookingReference}`,
         );
 
-        const whatsappMsg = `Hello Dhwani Tourist,%0A%0A*New Booking Request*%0A%0A📋 ID: ${response.data.bookingReference}%0A👤 Name: ${formData.fullName}%0A📞 Phone: ${formData.phone}%0A📧 Email: ${formData.email}%0A🚗 Service: ${formData.service}%0A🚙 Car: ${formData.carName || "N/A"}%0A📍 Destination: ${formData.placeName || "N/A"}%0A📅 Date: ${formData.pickupDate}%0A📍 Location: ${formData.pickupLocation}%0A👥 Passengers: ${formData.passengers}%0A💬 Message: ${formData.message || "No message"}%0A%0APlease contact me.`;
-
-        window.open(`https://wa.me/919274713544?text=${whatsappMsg}`, "_blank");
+        // Send WhatsApp message
+        sendWhatsAppMessage();
 
         setTimeout(() => {
           navigate(`/booking-success?ref=${response.data.bookingReference}`);
-        }, 1500);
+        }, 2000);
       }
     } catch (error) {
       console.error("Booking error:", error);
-      toast.error(error.response?.data?.message || "Failed to send request");
+      // Even if backend fails, send WhatsApp
+      sendWhatsAppMessage();
+      toast.success("Request sent via WhatsApp! We'll contact you soon.");
+
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     } finally {
       setLoading(false);
     }
@@ -304,7 +342,7 @@ const BookingForm = () => {
             </div>
           </div>
 
-          {/* Car Selection - Simple Dropdown */}
+          {/* Car Selection */}
           {(formData.service === "car" || formData.service === "both") && (
             <div style={styles.field}>
               <label style={styles.label}>
@@ -327,7 +365,7 @@ const BookingForm = () => {
             </div>
           )}
 
-          {/* Place Selection - Simple Dropdown */}
+          {/* Place Selection */}
           {(formData.service === "tour" || formData.service === "both") && (
             <div style={styles.field}>
               <label style={styles.label}>
@@ -413,7 +451,7 @@ const BookingForm = () => {
             <label style={styles.label}>Special Requests</label>
             <textarea
               name="message"
-              placeholder="Any special requirements? (car type, hotel preferences, etc.)"
+              placeholder="Any special requirements? (car type, preferences, etc.)"
               value={formData.message}
               onChange={handleChange}
               rows="3"
@@ -423,13 +461,13 @@ const BookingForm = () => {
 
           {/* Submit Button */}
           <button type="submit" style={styles.submitBtn}>
-            <FaPaperPlane style={styles.submitIcon} />
-            Send Booking Request
+            <FaWhatsapp style={styles.whatsappIcon} />
+            Send Booking Request on WhatsApp
           </button>
 
           <p style={styles.note}>
             <FaWhatsapp style={styles.whatsappIcon} />
-            We'll contact you via WhatsApp/Call within 30 minutes
+            We'll contact you via WhatsApp within 30 minutes
           </p>
         </form>
       </div>
@@ -545,7 +583,7 @@ const styles = {
     color: "#007bff",
   },
   submitBtn: {
-    backgroundColor: "#007bff",
+    backgroundColor: "#25D366",
     color: "#fff",
     padding: "14px",
     border: "none",
@@ -560,8 +598,8 @@ const styles = {
     transition: "all 0.3s",
     marginTop: "10px",
   },
-  submitIcon: {
-    fontSize: "16px",
+  whatsappIcon: {
+    fontSize: "20px",
   },
   note: {
     textAlign: "center",
@@ -572,9 +610,6 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     gap: "6px",
-  },
-  whatsappIcon: {
-    fontSize: "14px",
   },
 };
 

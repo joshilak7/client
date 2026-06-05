@@ -11,7 +11,9 @@ import {
   FaHeadset,
   FaChevronLeft,
   FaChevronRight,
-  FaCalendarCheck,
+  FaWhatsapp,
+  FaPhone,
+  FaEnvelope,
 } from "react-icons/fa";
 
 const Home = () => {
@@ -19,7 +21,6 @@ const Home = () => {
   const [featuredPlaces, setFeaturedPlaces] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   // Demo Cars
   const getDemoCars = () => {
@@ -28,33 +29,33 @@ const Home = () => {
         _id: "1",
         name: "Maruti Suzuki Swift",
         description:
-          "Perfect hatchback for city rides and family trips. Excellent fuel efficiency and comfortable seating for 5.",
+          "Perfect hatchback for city rides and family trips. Excellent fuel efficiency.",
         type: "Hatchback",
         seatingCapacity: 5,
         image:
-          "https://stimg.cardekho.com/images/carexteriorimages/930x620/Maruti/Swift/9226/1680586822716/front-left-side-47.jpg",
+          "https://www.marutisuzuki.com/-/media/marutisuzuki/global/swift/2022/swift-2022-left-front-three-quarter-5.webp",
         rating: 4.5,
       },
       {
         _id: "2",
         name: "Hyundai Creta",
         description:
-          "Premium SUV with modern features, spacious interior, and powerful engine. Perfect for family trips.",
+          "Premium SUV with modern features, spacious interior, and powerful engine.",
         type: "SUV",
         seatingCapacity: 5,
         image:
-          "https://stimg.cardekho.com/images/carexteriorimages/930x620/Hyundai/Creta/9824/1697697424167/front-left-side-47.jpg",
+          "https://www.hyundai.com/content/dam/hyundai/in/en/data/find-a-car/creta/gallery/creta-exterior-right-front-three-quarter-3.png",
         rating: 4.7,
       },
       {
         _id: "3",
         name: "Tata Nexon EV",
         description:
-          "Electric SUV with zero emissions, powerful performance, and impressive range. Eco-friendly travel.",
+          "Electric SUV with zero emissions, powerful performance, and impressive range.",
         type: "Electric SUV",
         seatingCapacity: 5,
         image:
-          "https://stimg.cardekho.com/images/carexteriorimages/930x620/Tata/Nexon-EV/11047/1694146347051/front-left-side-47.jpg",
+          "https://www.tatamotors.com/wp-content/uploads/2023/04/Nexon-EV-front-view.jpg",
         rating: 4.6,
       },
       {
@@ -65,7 +66,7 @@ const Home = () => {
         type: "MPV",
         seatingCapacity: 7,
         image:
-          "https://stimg.cardekho.com/images/carexteriorimages/930x620/Toyota/Innova-Crysta/10012/1662111712695/front-left-side-47.jpg",
+          "https://www.toyotabharat.com/img/innova-crysta/gallery/exterior/Innova-Crysta-Exterior-1.webp",
         rating: 4.8,
       },
     ];
@@ -80,7 +81,7 @@ const Home = () => {
         city: "Agra",
         state: "Uttar Pradesh",
         description:
-          "World famous white marble monument and wonder of the world. A symbol of eternal love.",
+          "World famous white marble monument and wonder of the world.",
         image:
           "https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=1200&auto=format&fit=crop",
         rating: 4.9,
@@ -91,7 +92,7 @@ const Home = () => {
         city: "Goa",
         state: "India",
         description:
-          "Beautiful beaches, amazing nightlife, and Portuguese architecture. Perfect for vacation.",
+          "Beautiful beaches, amazing nightlife, and Portuguese architecture.",
         image:
           "https://images.unsplash.com/photo-1512343879784-a960bf40e7b2?q=80&w=1200&auto=format&fit=crop",
         rating: 4.7,
@@ -126,7 +127,7 @@ const Home = () => {
       id: 1,
       name: "Robert Smith",
       country: "United Kingdom",
-      text: "Amazing experience with Dhwani Tourist! The car was in excellent condition and the driver was very professional. Highly recommended for Udaipur sightseeing.",
+      text: "Amazing experience with Dhwani Tourist! The car was in excellent condition and the driver was very professional. Highly recommended!",
       rating: 5,
       image: "https://randomuser.me/api/portraits/men/1.jpg",
     },
@@ -134,7 +135,7 @@ const Home = () => {
       id: 2,
       name: "Sarah Johnson",
       country: "USA",
-      text: "Best travel agency in town! They arranged everything perfectly from car rental to hotel booking. The tour guides were knowledgeable and friendly.",
+      text: "Best travel agency! They arranged everything perfectly from car rental to hotel booking. The tour guides were knowledgeable and friendly.",
       rating: 5,
       image: "https://randomuser.me/api/portraits/women/2.jpg",
     },
@@ -146,23 +147,7 @@ const Home = () => {
       rating: 5,
       image: "https://randomuser.me/api/portraits/women/3.jpg",
     },
-    {
-      id: 4,
-      name: "Michael Brown",
-      country: "Australia",
-      text: "Excellent car rental service! The pickup was on time, car was clean, and prices are reasonable. Great experience overall.",
-      rating: 5,
-      image: "https://randomuser.me/api/portraits/men/4.jpg",
-    },
   ];
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -184,7 +169,7 @@ const Home = () => {
           setFeaturedPlaces(getDemoPlaces());
         }
       } catch (error) {
-        console.log("Using Demo Data", error);
+        console.log("Using Demo Data");
         setFeaturedCars(getDemoCars());
         setFeaturedPlaces(getDemoPlaces());
       } finally {
@@ -226,6 +211,7 @@ const Home = () => {
             </h1>
             <p style={styles.heroSubtitle}>
               Discover beautiful places and rent cars for your next adventure
+              with Dhwani Tourist
             </p>
             <div style={styles.heroButtons}>
               <Link to="/cars" style={styles.heroBtnPrimary}>
@@ -253,7 +239,7 @@ const Home = () => {
           <div style={styles.featuresGrid}>
             <div style={styles.featureCard}>
               <div style={styles.featureIcon}>
-                <FaCar size={32} color="#007bff" />
+                <FaCar size={40} color="#007bff" />
               </div>
               <h3 style={styles.featureTitle}>Best Car Rental</h3>
               <p style={styles.featureText}>
@@ -263,7 +249,7 @@ const Home = () => {
 
             <div style={styles.featureCard}>
               <div style={styles.featureIcon}>
-                <FaHeadset size={32} color="#007bff" />
+                <FaHeadset size={40} color="#007bff" />
               </div>
               <h3 style={styles.featureTitle}>24/7 Support</h3>
               <p style={styles.featureText}>
@@ -273,7 +259,7 @@ const Home = () => {
 
             <div style={styles.featureCard}>
               <div style={styles.featureIcon}>
-                <FaUsers size={32} color="#007bff" />
+                <FaUsers size={40} color="#007bff" />
               </div>
               <h3 style={styles.featureTitle}>Experienced Drivers</h3>
               <p style={styles.featureText}>
@@ -283,7 +269,7 @@ const Home = () => {
 
             <div style={styles.featureCard}>
               <div style={styles.featureIcon}>
-                <FaShieldAlt size={32} color="#007bff" />
+                <FaShieldAlt size={40} color="#007bff" />
               </div>
               <h3 style={styles.featureTitle}>Safe & Secure</h3>
               <p style={styles.featureText}>
@@ -294,7 +280,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Featured Cars Section with Book Now Button */}
+      {/* Featured Cars */}
       <section style={styles.sectionLight}>
         <div style={styles.container}>
           <div style={styles.headingContainer}>
@@ -316,39 +302,33 @@ const Home = () => {
                   <img
                     src={
                       car.image ||
-                      "https://via.placeholder.com/400x250?text=Car+Image"
+                      "https://via.placeholder.com/400x250?text=Car"
                     }
                     alt={car.name}
                     style={styles.cardImg}
                     loading="lazy"
                     onError={(e) => {
                       e.target.src =
-                        "https://via.placeholder.com/400x250?text=Car+Image";
+                        "https://via.placeholder.com/400x250?text=Car";
                     }}
                   />
                   <div style={styles.cardBadge}>{car.type}</div>
+                  <div style={styles.cardRating}>
+                    <FaStar style={styles.starIcon} />
+                    <span>{car.rating}</span>
+                  </div>
                 </div>
                 <div style={styles.cardBody}>
-                  <div style={styles.cardHeader}>
-                    <h3 style={styles.cardTitle}>{car.name}</h3>
-                    <div style={styles.rating}>
-                      <FaStar style={styles.starIcon} />
-                      <span>{car.rating || 4.5}</span>
-                    </div>
-                  </div>
+                  <h3 style={styles.cardTitle}>{car.name}</h3>
                   <div style={styles.cardDetails}>
-                    <span>👥 {car.seatingCapacity || 5} Seats</span>
+                    <span>👥 {car.seatingCapacity} Seats</span>
                     <span>⚡ {car.type}</span>
                   </div>
                   <p style={styles.cardText}>
-                    {car.description?.substring(0, 100) || car.description}...
+                    {car.description.substring(0, 100)}...
                   </p>
-                  <Link
-                    to={`/booking?carId=${car._id}`}
-                    style={styles.bookNowBtn}
-                  >
-                    <FaCalendarCheck style={{ marginRight: "8px" }} />
-                    Book Now
+                  <Link to={`/booking?carId=${car._id}`} style={styles.bookBtn}>
+                    Book Now →
                   </Link>
                 </div>
               </div>
@@ -357,7 +337,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Popular Destinations Section with Book Now Button */}
+      {/* Popular Destinations */}
       <section style={styles.section}>
         <div style={styles.container}>
           <div style={styles.headingContainer}>
@@ -378,22 +358,22 @@ const Home = () => {
                 <img
                   src={
                     place.image ||
-                    "https://via.placeholder.com/400x250?text=Place+Image"
+                    "https://via.placeholder.com/400x250?text=Place"
                   }
                   alt={place.name}
                   style={styles.cardImg}
                   loading="lazy"
                   onError={(e) => {
                     e.target.src =
-                      "https://via.placeholder.com/400x250?text=Place+Image";
+                      "https://via.placeholder.com/400x250?text=Place";
                   }}
                 />
                 <div style={styles.cardBody}>
                   <div style={styles.cardHeader}>
                     <h3 style={styles.cardTitle}>{place.name}</h3>
-                    <div style={styles.rating}>
+                    <div style={styles.cardRating}>
                       <FaStar style={styles.starIcon} />
-                      <span>{place.rating || 4.5}</span>
+                      <span>{place.rating}</span>
                     </div>
                   </div>
                   <p style={styles.location}>
@@ -401,21 +381,14 @@ const Home = () => {
                     {place.city}, {place.state}
                   </p>
                   <p style={styles.cardText}>
-                    {place.description?.substring(0, 100) || place.description}
-                    ...
+                    {place.description.substring(0, 100)}...
                   </p>
-                  <div style={styles.cardFooter}>
-                    <span style={styles.tourPrice}>
-                      Tour: ₹{place.tourPrice || 1500}/person
-                    </span>
-                    <Link
-                      to={`/booking?placeId=${place._id}`}
-                      style={styles.bookNowBtn}
-                    >
-                      <FaCalendarCheck style={{ marginRight: "8px" }} />
-                      Book Tour
-                    </Link>
-                  </div>
+                  <Link
+                    to={`/booking?placeId=${place._id}`}
+                    style={styles.bookBtn}
+                  >
+                    Book Tour →
+                  </Link>
                 </div>
               </div>
             ))}
@@ -423,7 +396,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Testimonials */}
       <section style={styles.testimonialSection}>
         <div style={styles.container}>
           <h2 style={styles.sectionTitle}>What Our Customers Say</h2>
@@ -446,7 +419,6 @@ const Home = () => {
                   src={testimonials[currentTestimonial].image}
                   alt={testimonials[currentTestimonial].name}
                   style={styles.testimonialImage}
-                  loading="lazy"
                 />
               </div>
               <div style={styles.testimonialContent}>
@@ -486,9 +458,64 @@ const Home = () => {
                   backgroundColor:
                     currentTestimonial === idx ? "#007bff" : "#ddd",
                 }}
-                aria-label={`Go to testimonial ${idx + 1}`}
               />
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section style={styles.contactSection}>
+        <div style={styles.container}>
+          <div style={styles.contactGrid}>
+            <div style={styles.contactInfo}>
+              <h2 style={styles.contactTitle}>Need Help?</h2>
+              <p style={styles.contactText}>
+                Contact us anytime. We're here to help you 24/7.
+              </p>
+              <div style={styles.contactDetails}>
+                <div style={styles.contactItem}>
+                  <FaPhone style={styles.contactIcon} />
+                  <div>
+                    <h4>Call Us</h4>
+                    <p>+91 92747 13544</p>
+                  </div>
+                </div>
+                <div style={styles.contactItem}>
+                  <FaWhatsapp style={styles.contactIcon} />
+                  <div>
+                    <h4>WhatsApp</h4>
+                    <p>+91 92747 13544</p>
+                  </div>
+                </div>
+                <div style={styles.contactItem}>
+                  <FaEnvelope style={styles.contactIcon} />
+                  <div>
+                    <h4>Email Us</h4>
+                    <p>dhwanitourist@gmail.com</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style={styles.contactForm}>
+              <h3>Quick Inquiry</h3>
+              <input
+                type="text"
+                placeholder="Your Name"
+                style={styles.contactInput}
+              />
+              <input
+                type="tel"
+                placeholder="Phone Number"
+                style={styles.contactInput}
+              />
+              <textarea
+                placeholder="Your Message"
+                rows="3"
+                style={styles.contactTextarea}
+              ></textarea>
+              <button style={styles.contactBtn}>Send Message</button>
+            </div>
           </div>
         </div>
       </section>
@@ -501,14 +528,11 @@ const Home = () => {
             Book your dream car or plan your perfect trip today!
           </p>
           <div style={styles.ctaButtons}>
-            <Link to="/cars" style={styles.ctaBtnPrimary}>
-              Book a Car
+            <Link to="/booking" style={styles.ctaBtnPrimary}>
+              Book Now
             </Link>
-            <Link to="/places" style={styles.ctaBtnSecondary}>
-              Plan a Trip
-            </Link>
-            <Link to="/booking" style={styles.ctaBtnSpecial}>
-              Customize Your Package →
+            <Link to="/cars" style={styles.ctaBtnSecondary}>
+              View Cars
             </Link>
           </div>
         </div>
@@ -517,7 +541,6 @@ const Home = () => {
   );
 };
 
-// Responsive Styles - Works on all devices
 const styles = {
   hero: {
     backgroundImage:
@@ -525,7 +548,7 @@ const styles = {
     backgroundSize: "cover",
     backgroundPosition: "center",
     minHeight: "500px",
-    height: "90vh",
+    height: "85vh",
     position: "relative",
   },
   overlay: {
@@ -544,13 +567,13 @@ const styles = {
     width: "100%",
   },
   heroTitle: {
-    fontSize: "clamp(28px, 5vw, 56px)",
+    fontSize: "clamp(32px, 5vw, 52px)",
     fontWeight: "bold",
     marginBottom: "20px",
     lineHeight: "1.2",
   },
   heroSubtitle: {
-    fontSize: "clamp(16px, 3vw, 22px)",
+    fontSize: "clamp(16px, 3vw, 20px)",
     marginBottom: "35px",
     color: "#f1f1f1",
   },
@@ -561,7 +584,7 @@ const styles = {
     flexWrap: "wrap",
   },
   heroBtnPrimary: {
-    padding: "14px 32px",
+    padding: "12px 28px",
     fontSize: "16px",
     borderRadius: "8px",
     textDecoration: "none",
@@ -569,12 +592,9 @@ const styles = {
     color: "#fff",
     fontWeight: "600",
     transition: "all 0.3s",
-    display: "flex",
-    alignItems: "center",
-    minHeight: "50px",
   },
   heroBtnSecondary: {
-    padding: "14px 32px",
+    padding: "12px 28px",
     fontSize: "16px",
     borderRadius: "8px",
     textDecoration: "none",
@@ -583,12 +603,9 @@ const styles = {
     fontWeight: "600",
     border: "2px solid #fff",
     transition: "all 0.3s",
-    display: "flex",
-    alignItems: "center",
-    minHeight: "50px",
   },
   heroBtnBooking: {
-    padding: "14px 32px",
+    padding: "12px 28px",
     fontSize: "16px",
     borderRadius: "8px",
     textDecoration: "none",
@@ -596,9 +613,6 @@ const styles = {
     color: "#fff",
     fontWeight: "600",
     transition: "all 0.3s",
-    display: "flex",
-    alignItems: "center",
-    minHeight: "50px",
   },
   container: {
     maxWidth: "1200px",
@@ -622,7 +636,7 @@ const styles = {
     gap: "15px",
   },
   sectionTitle: {
-    fontSize: "clamp(28px, 4vw, 42px)",
+    fontSize: "clamp(28px, 4vw, 38px)",
     fontWeight: "bold",
     color: "#222",
     marginBottom: "10px",
@@ -640,10 +654,6 @@ const styles = {
     borderRadius: "8px",
     textDecoration: "none",
     fontWeight: "bold",
-    display: "flex",
-    alignItems: "center",
-    minHeight: "44px",
-    transition: "all 0.3s",
   },
   featuresGrid: {
     display: "grid",
@@ -653,12 +663,11 @@ const styles = {
   },
   featureCard: {
     textAlign: "center",
-    padding: "30px 20px",
+    padding: "30px",
     backgroundColor: "#fff",
     borderRadius: "12px",
     boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
     transition: "transform 0.3s",
-    cursor: "pointer",
   },
   featureIcon: {
     marginBottom: "20px",
@@ -676,25 +685,22 @@ const styles = {
   },
   grid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-    gap: "30px",
+    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    gap: "25px",
   },
   card: {
     backgroundColor: "#fff",
     borderRadius: "12px",
     overflow: "hidden",
-    boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
+    boxShadow: "0 2px 10px rgba(0,0,0,0.08)",
     transition: "transform 0.3s",
-    cursor: "pointer",
-    display: "flex",
-    flexDirection: "column",
   },
   cardImageWrapper: {
     position: "relative",
   },
   cardImg: {
     width: "100%",
-    height: "220px",
+    height: "200px",
     objectFit: "cover",
   },
   cardBadge: {
@@ -703,97 +709,78 @@ const styles = {
     right: "10px",
     backgroundColor: "#007bff",
     color: "#fff",
-    padding: "5px 12px",
+    padding: "4px 10px",
     borderRadius: "20px",
-    fontSize: "12px",
+    fontSize: "11px",
     fontWeight: "600",
   },
-  cardBody: {
-    padding: "20px",
-    flex: 1,
+  cardRating: {
+    position: "absolute",
+    bottom: "10px",
+    left: "10px",
+    backgroundColor: "#ffc107",
+    padding: "4px 8px",
+    borderRadius: "20px",
+    fontSize: "12px",
+    fontWeight: "bold",
     display: "flex",
-    flexDirection: "column",
+    alignItems: "center",
+    gap: "4px",
+  },
+  starIcon: {
+    color: "#000",
+    fontSize: "10px",
+  },
+  cardBody: {
+    padding: "16px",
   },
   cardHeader: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: "10px",
+    marginBottom: "8px",
   },
   cardTitle: {
-    fontSize: "20px",
-    fontWeight: "600",
+    fontSize: "18px",
+    fontWeight: "bold",
+    marginBottom: "8px",
     color: "#222",
-    margin: 0,
-  },
-  rating: {
-    display: "flex",
-    alignItems: "center",
-    gap: "5px",
-    backgroundColor: "#f8f9fa",
-    padding: "4px 8px",
-    borderRadius: "20px",
-  },
-  starIcon: {
-    color: "#ffc107",
-    fontSize: "14px",
   },
   cardDetails: {
     display: "flex",
-    gap: "15px",
+    gap: "12px",
     marginBottom: "10px",
-    fontSize: "13px",
+    fontSize: "12px",
     color: "#666",
-    flexWrap: "wrap",
   },
   cardText: {
     color: "#666",
-    lineHeight: "1.6",
-    fontSize: "14px",
-    marginBottom: "15px",
-    flex: 1,
+    lineHeight: "1.5",
+    fontSize: "13px",
+    marginBottom: "12px",
   },
   location: {
     color: "#007bff",
-    marginBottom: "10px",
-    fontWeight: "500",
-    fontSize: "14px",
+    marginBottom: "8px",
+    fontSize: "13px",
     display: "flex",
     alignItems: "center",
     gap: "5px",
   },
   locationIcon: {
-    fontSize: "12px",
+    fontSize: "11px",
   },
-  cardFooter: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginTop: "10px",
-    flexWrap: "wrap",
-    gap: "10px",
-  },
-  tourPrice: {
-    fontSize: "14px",
-    fontWeight: "600",
-    color: "#28a745",
-  },
-  bookNowBtn: {
+  bookBtn: {
+    display: "inline-block",
     backgroundColor: "#28a745",
     color: "#fff",
-    padding: "10px 16px",
-    borderRadius: "8px",
+    padding: "8px 16px",
+    borderRadius: "6px",
     textDecoration: "none",
-    fontSize: "14px",
-    fontWeight: "600",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    transition: "all 0.3s",
-    marginTop: "10px",
-    border: "none",
-    cursor: "pointer",
+    fontSize: "13px",
+    fontWeight: "500",
     textAlign: "center",
+    width: "100%",
   },
   testimonialSection: {
     padding: "60px 20px",
@@ -806,7 +793,6 @@ const styles = {
     gap: "20px",
     maxWidth: "800px",
     margin: "40px auto 0",
-    position: "relative",
   },
   testimonialNav: {
     backgroundColor: "#fff",
@@ -819,9 +805,6 @@ const styles = {
     justifyContent: "center",
     cursor: "pointer",
     boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
-    transition: "all 0.3s",
-    minWidth: "44px",
-    minHeight: "44px",
   },
   testimonialCard: {
     flex: 1,
@@ -842,9 +825,6 @@ const styles = {
     width: "100%",
     height: "100%",
     objectFit: "cover",
-  },
-  testimonialContent: {
-    textAlign: "center",
   },
   testimonialRating: {
     display: "flex",
@@ -886,7 +866,77 @@ const styles = {
     border: "none",
     cursor: "pointer",
     transition: "all 0.3s",
-    padding: 0,
+  },
+  contactSection: {
+    padding: "60px 20px",
+    backgroundColor: "#fff",
+  },
+  contactGrid: {
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gap: "40px",
+    alignItems: "center",
+  },
+  contactInfo: {
+    padding: "20px",
+  },
+  contactTitle: {
+    fontSize: "32px",
+    fontWeight: "bold",
+    marginBottom: "15px",
+    color: "#222",
+  },
+  contactText: {
+    color: "#666",
+    marginBottom: "25px",
+    fontSize: "16px",
+  },
+  contactDetails: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "20px",
+  },
+  contactItem: {
+    display: "flex",
+    alignItems: "center",
+    gap: "15px",
+  },
+  contactIcon: {
+    fontSize: "24px",
+    color: "#007bff",
+  },
+  contactForm: {
+    backgroundColor: "#f8f9fa",
+    padding: "30px",
+    borderRadius: "12px",
+  },
+  contactInput: {
+    width: "100%",
+    padding: "12px",
+    marginBottom: "15px",
+    border: "1px solid #ddd",
+    borderRadius: "8px",
+    fontSize: "14px",
+  },
+  contactTextarea: {
+    width: "100%",
+    padding: "12px",
+    marginBottom: "15px",
+    border: "1px solid #ddd",
+    borderRadius: "8px",
+    fontSize: "14px",
+    resize: "vertical",
+  },
+  contactBtn: {
+    backgroundColor: "#007bff",
+    color: "#fff",
+    padding: "12px",
+    border: "none",
+    borderRadius: "8px",
+    fontSize: "16px",
+    fontWeight: "600",
+    cursor: "pointer",
+    width: "100%",
   },
   ctaSection: {
     padding: "60px 20px",
@@ -899,7 +949,7 @@ const styles = {
     margin: "0 auto",
   },
   ctaTitle: {
-    fontSize: "clamp(24px, 4vw, 36px)",
+    fontSize: "clamp(28px, 4vw, 36px)",
     fontWeight: "bold",
     marginBottom: "15px",
   },
@@ -921,10 +971,6 @@ const styles = {
     borderRadius: "8px",
     textDecoration: "none",
     fontWeight: "600",
-    transition: "all 0.3s",
-    minHeight: "48px",
-    display: "flex",
-    alignItems: "center",
   },
   ctaBtnSecondary: {
     backgroundColor: "transparent",
@@ -934,315 +980,46 @@ const styles = {
     textDecoration: "none",
     fontWeight: "600",
     border: "2px solid #fff",
-    transition: "all 0.3s",
-    minHeight: "48px",
-    display: "flex",
-    alignItems: "center",
-  },
-  ctaBtnSpecial: {
-    backgroundColor: "#28a745",
-    color: "#fff",
-    padding: "12px 30px",
-    borderRadius: "8px",
-    textDecoration: "none",
-    fontWeight: "600",
-    transition: "all 0.3s",
-    minHeight: "48px",
-    display: "flex",
-    alignItems: "center",
   },
 };
 
-// Add hover effects and responsive styles
+// Add hover effects
 const styleSheet = document.createElement("style");
 styleSheet.textContent = `
-  /* Hover effects */
-  .hero-btn-primary:hover {
-    background-color: #0056b3 !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
-  }
-  
-  .hero-btn-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.1) !important;
+  .hero-btn-primary:hover, .hero-btn-secondary:hover, .hero-btn-booking:hover {
     transform: translateY(-2px);
   }
+  .hero-btn-primary:hover { background-color: #0056b3 !important; }
+  .hero-btn-secondary:hover { background-color: rgba(255,255,255,0.1) !important; }
+  .hero-btn-booking:hover { background-color: #218838 !important; }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+  .feature-card:hover { transform: translateY(-5px); }
+  .more-btn:hover { background-color: #c82333 !important; transform: translateX(3px); }
+  .book-btn:hover { background-color: #218838 !important; }
+  .testimonial-nav:hover { background-color: #007bff !important; color: #fff !important; }
+  .contact-btn:hover { background-color: #0056b3 !important; }
+  .cta-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+  .cta-btn-secondary:hover { background-color: rgba(255,255,255,0.1) !important; transform: translateY(-2px); }
   
-  .hero-btn-booking:hover {
-    background-color: #218838 !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
-  }
-  
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-  }
-  
-  .feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-  }
-  
-  .testimonial-nav:hover {
-    background-color: #007bff !important;
-    color: #fff !important;
-    transform: scale(1.1);
-  }
-  
-  .more-btn:hover {
-    background-color: #c82333 !important;
-    transform: translateX(5px);
-  }
-  
-  .book-now-btn:hover {
-    background-color: #218838 !important;
-    transform: translateY(-2px);
-  }
-  
-  .cta-btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  }
-  
-  .cta-btn-secondary:hover {
-    background-color: rgba(255,255,255,0.15) !important;
-    transform: translateY(-2px);
-  }
-  
-  .cta-btn-special:hover {
-    background-color: #218838 !important;
-    transform: translateY(-2px);
-  }
-  
-  .dot:hover {
-    transform: scale(1.3);
-  }
-  
-  /* Responsive styles */
   @media (max-width: 768px) {
-    .hero-buttons {
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .hero-btn-primary,
-    .hero-btn-secondary,
-    .hero-btn-booking {
-      width: 100%;
-      max-width: 250px;
-      justify-content: center;
-    }
-    
-    .heading-container {
-      flex-direction: column;
-      text-align: center;
-    }
-    
-    .testimonial-container {
-      gap: 10px;
-    }
-    
-    .testimonial-card {
-      padding: 20px;
-    }
-    
-    .testimonial-nav {
-      width: 36px;
-      height: 36px;
-    }
-    
-    .section-title {
-      font-size: 28px !important;
-    }
-    
-    .grid {
-      grid-template-columns: 1fr !important;
-    }
+    .contact-grid { grid-template-columns: 1fr !important; }
+    .hero-buttons { flex-direction: column; align-items: center; }
+    .hero-btn-primary, .hero-btn-secondary, .hero-btn-booking { width: 100%; max-width: 250px; text-align: center; }
+    .heading-container { flex-direction: column; text-align: center; }
+    .testimonial-container { gap: 10px; }
+    .testimonial-card { padding: 20px; }
   }
   
   @media (max-width: 480px) {
-    .section {
-      padding: 40px 16px;
-    }
-    
-    .grid {
-      gap: 20px;
-    }
-    
-    .card-img {
-      height: 180px;
-    }
-    
-    .card-body {
-      padding: 15px;
-    }
-    
-    .card-title {
-      font-size: 18px;
-    }
-    
-    .testimonial-text {
-      font-size: 14px;
-    }
-    
-    .testimonial-name {
-      font-size: 16px;
-    }
-    
-    .cta-buttons {
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .cta-btn-primary,
-    .cta-btn-secondary,
-    .cta-btn-special {
-      width: 100%;
-      max-width: 250px;
-      justify-content: center;
-    }
-    
-    .testimonial-image-wrapper {
-      width: 60px;
-      height: 60px;
-    }
-    
-    .testimonial-star {
-      font-size: 14px;
-    }
-    
-    .card-footer {
-      flex-direction: column;
-    }
-    
-    .book-now-btn {
-      width: 100%;
-    }
-  }
-  
-  /* Touch-friendly improvements */
-  @media (max-width: 768px) {
-    button,
-    a,
-    [role="button"] {
-      min-height: 44px;
-      min-width: 44px;
-    }
-    
-    .more-btn {
-      min-height: 40px;
-    }
-    
-    .testimonial-nav {
-      min-width: 44px;
-      min-height: 44px;
-    }
-    
-    .dot {
-      min-width: 10px;
-      min-height: 10px;
-    }
-    
-    .book-now-btn {
-      min-height: 44px;
-    }
-  }
-  
-  /* Landscape mode */
-  @media (max-width: 768px) and (orientation: landscape) {
-    .hero {
-      height: auto;
-      min-height: 400px;
-    }
-    
-    .testimonial-container {
-      max-width: 90%;
-    }
-  }
-  
-  /* Dark mode support */
-  @media (prefers-color-scheme: dark) {
-    .card {
-      background-color: #2a2a2a;
-    }
-    
-    .card-title {
-      color: #fff;
-    }
-    
-    .card-text,
-    .feature-text {
-      color: #ccc;
-    }
-    
-    .feature-card {
-      background-color: #2a2a2a;
-    }
-    
-    .feature-title {
-      color: #fff;
-    }
-    
-    .testimonial-card {
-      background-color: #2a2a2a;
-    }
-    
-    .testimonial-text {
-      color: #ccc;
-    }
-    
-    .testimonial-name {
-      color: #fff;
-    }
-    
-    .rating {
-      background-color: #3a3a3a;
-    }
-    
-    .card-details {
-      color: #aaa;
-    }
-  }
-  
-  /* Smooth animations */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  .card {
-    animation: fadeIn 0.5s ease;
-  }
-  
-  .feature-card {
-    animation: fadeIn 0.5s ease;
-  }
-  
-  /* Loading state */
-  .loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 400px;
-  }
-  
-  /* Accessibility */
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
+    .section, .section-light, .testimonial-section { padding: 40px 16px; }
+    .grid { gap: 16px; }
+    .card-img { height: 160px; }
+    .card-body { padding: 12px; }
+    .card-title { font-size: 16px; }
+    .testimonial-text { font-size: 14px; }
+    .contact-form { padding: 20px; }
   }
 `;
-
 document.head.appendChild(styleSheet);
 
 export default Home;

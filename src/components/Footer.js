@@ -76,18 +76,6 @@ const Footer = () => {
                   Places
                 </Link>
               </li>
-              <li>
-                <Link to="/bookings" style={styles.link} onClick={scrollToTop}>
-                  <FaUsers style={styles.linkIcon} />
-                  My Bookings
-                </Link>
-              </li>
-              <li>
-                <Link to="/about" style={styles.link} onClick={scrollToTop}>
-                  <FaInfoCircle style={styles.linkIcon} />
-                  About Us
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -141,8 +129,11 @@ const Footer = () => {
                   <a href="tel:+919274713544" style={styles.contactLink}>
                     +91 92747 13544
                   </a>
-                  <a href="tel:+919274713544" style={styles.contactLink}>
-                    +91 
+                </div>
+                <div>
+                  <span style={styles.contactLabel}>Phone</span>
+                  <a href="tel:+918200179225" style={styles.contactLink}>
+                    +91 82001 79225
                   </a>
                 </div>
               </div>
