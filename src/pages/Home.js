@@ -180,7 +180,6 @@ const Home = () => {
     fetchData();
   }, []);
 
-  // Auto-rotate testimonials
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
@@ -201,7 +200,7 @@ const Home = () => {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <div>
+    <div style={styles.wrapper}>
       {/* Hero Section */}
       <section style={styles.hero}>
         <div style={styles.overlay}>
@@ -228,14 +227,13 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
+      {/* Why Choose Us */}
       <section style={styles.section}>
         <div style={styles.container}>
           <h2 style={styles.sectionTitle}>Why Choose Us?</h2>
           <p style={styles.sectionSubtitle}>
             We provide the best travel experience
           </p>
-
           <div style={styles.featuresGrid}>
             <div style={styles.featureCard}>
               <div style={styles.featureIcon}>
@@ -246,7 +244,6 @@ const Home = () => {
                 Wide range of well-maintained cars at affordable prices
               </p>
             </div>
-
             <div style={styles.featureCard}>
               <div style={styles.featureIcon}>
                 <FaHeadset size={40} color="#007bff" />
@@ -256,7 +253,6 @@ const Home = () => {
                 Round-the-clock customer support for all your needs
               </p>
             </div>
-
             <div style={styles.featureCard}>
               <div style={styles.featureIcon}>
                 <FaUsers size={40} color="#007bff" />
@@ -266,7 +262,6 @@ const Home = () => {
                 Professional and knowledgeable local drivers
               </p>
             </div>
-
             <div style={styles.featureCard}>
               <div style={styles.featureIcon}>
                 <FaShieldAlt size={40} color="#007bff" />
@@ -294,7 +289,6 @@ const Home = () => {
               View All Cars →
             </Link>
           </div>
-
           <div style={styles.grid}>
             {featuredCars.map((car) => (
               <div key={car._id} style={styles.card}>
@@ -351,7 +345,6 @@ const Home = () => {
               View All Places →
             </Link>
           </div>
-
           <div style={styles.grid}>
             {featuredPlaces.map((place) => (
               <div key={place._id} style={styles.card}>
@@ -403,7 +396,6 @@ const Home = () => {
           <p style={styles.sectionSubtitle}>
             Real experiences from real travelers
           </p>
-
           <div style={styles.testimonialContainer}>
             <button
               onClick={prevTestimonial}
@@ -412,7 +404,6 @@ const Home = () => {
             >
               <FaChevronLeft />
             </button>
-
             <div style={styles.testimonialCard}>
               <div style={styles.testimonialImageWrapper}>
                 <img
@@ -438,7 +429,6 @@ const Home = () => {
                 </p>
               </div>
             </div>
-
             <button
               onClick={nextTestimonial}
               style={styles.testimonialNav}
@@ -447,7 +437,6 @@ const Home = () => {
               <FaChevronRight />
             </button>
           </div>
-
           <div style={styles.testimonialDots}>
             {testimonials.map((_, idx) => (
               <button
@@ -542,6 +531,7 @@ const Home = () => {
 };
 
 const styles = {
+  wrapper: { width: "100%", overflowX: "hidden" },
   hero: {
     backgroundImage:
       "url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop')",
@@ -567,35 +557,36 @@ const styles = {
     width: "100%",
   },
   heroTitle: {
-    fontSize: "clamp(32px, 5vw, 52px)",
+    fontSize: "clamp(28px, 5vw, 52px)",
     fontWeight: "bold",
     marginBottom: "20px",
     lineHeight: "1.2",
   },
   heroSubtitle: {
-    fontSize: "clamp(16px, 3vw, 20px)",
+    fontSize: "clamp(14px, 3vw, 20px)",
     marginBottom: "35px",
     color: "#f1f1f1",
   },
   heroButtons: {
     display: "flex",
     justifyContent: "center",
-    gap: "20px",
+    gap: "15px",
     flexWrap: "wrap",
   },
   heroBtnPrimary: {
-    padding: "12px 28px",
-    fontSize: "16px",
+    padding: "12px 24px",
+    fontSize: "clamp(14px, 3vw, 16px)",
     borderRadius: "8px",
     textDecoration: "none",
     backgroundColor: "#007bff",
     color: "#fff",
     fontWeight: "600",
     transition: "all 0.3s",
+    display: "inline-block",
   },
   heroBtnSecondary: {
-    padding: "12px 28px",
-    fontSize: "16px",
+    padding: "12px 24px",
+    fontSize: "clamp(14px, 3vw, 16px)",
     borderRadius: "8px",
     textDecoration: "none",
     backgroundColor: "transparent",
@@ -603,30 +594,22 @@ const styles = {
     fontWeight: "600",
     border: "2px solid #fff",
     transition: "all 0.3s",
+    display: "inline-block",
   },
   heroBtnBooking: {
-    padding: "12px 28px",
-    fontSize: "16px",
+    padding: "12px 24px",
+    fontSize: "clamp(14px, 3vw, 16px)",
     borderRadius: "8px",
     textDecoration: "none",
     backgroundColor: "#28a745",
     color: "#fff",
     fontWeight: "600",
     transition: "all 0.3s",
+    display: "inline-block",
   },
-  container: {
-    maxWidth: "1200px",
-    margin: "0 auto",
-    padding: "0 20px",
-  },
-  section: {
-    padding: "60px 20px",
-    backgroundColor: "#fff",
-  },
-  sectionLight: {
-    padding: "60px 20px",
-    backgroundColor: "#f8f9fa",
-  },
+  container: { maxWidth: "1200px", margin: "0 auto", padding: "0 20px" },
+  section: { padding: "60px 20px", backgroundColor: "#fff" },
+  sectionLight: { padding: "60px 20px", backgroundColor: "#f8f9fa" },
   headingContainer: {
     display: "flex",
     justifyContent: "space-between",
@@ -636,14 +619,14 @@ const styles = {
     gap: "15px",
   },
   sectionTitle: {
-    fontSize: "clamp(28px, 4vw, 38px)",
+    fontSize: "clamp(24px, 4vw, 38px)",
     fontWeight: "bold",
     color: "#222",
     marginBottom: "10px",
     textAlign: "center",
   },
   sectionSubtitle: {
-    fontSize: "16px",
+    fontSize: "clamp(14px, 3vw, 16px)",
     color: "#666",
     textAlign: "center",
   },
@@ -654,6 +637,8 @@ const styles = {
     borderRadius: "8px",
     textDecoration: "none",
     fontWeight: "bold",
+    fontSize: "14px",
+    display: "inline-block",
   },
   featuresGrid: {
     display: "grid",
@@ -663,29 +648,27 @@ const styles = {
   },
   featureCard: {
     textAlign: "center",
-    padding: "30px",
+    padding: "30px 20px",
     backgroundColor: "#fff",
     borderRadius: "12px",
     boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
     transition: "transform 0.3s",
   },
-  featureIcon: {
-    marginBottom: "20px",
-  },
+  featureIcon: { marginBottom: "20px" },
   featureTitle: {
-    fontSize: "20px",
+    fontSize: "clamp(18px, 3vw, 20px)",
     fontWeight: "600",
     marginBottom: "10px",
     color: "#333",
   },
   featureText: {
-    fontSize: "14px",
+    fontSize: "clamp(12px, 2.5vw, 14px)",
     color: "#666",
     lineHeight: "1.6",
   },
   grid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
     gap: "25px",
   },
   card: {
@@ -695,14 +678,8 @@ const styles = {
     boxShadow: "0 2px 10px rgba(0,0,0,0.08)",
     transition: "transform 0.3s",
   },
-  cardImageWrapper: {
-    position: "relative",
-  },
-  cardImg: {
-    width: "100%",
-    height: "200px",
-    objectFit: "cover",
-  },
+  cardImageWrapper: { position: "relative" },
+  cardImg: { width: "100%", height: "200px", objectFit: "cover" },
   cardBadge: {
     position: "absolute",
     top: "10px",
@@ -727,13 +704,8 @@ const styles = {
     alignItems: "center",
     gap: "4px",
   },
-  starIcon: {
-    color: "#000",
-    fontSize: "10px",
-  },
-  cardBody: {
-    padding: "16px",
-  },
+  starIcon: { color: "#000", fontSize: "10px" },
+  cardBody: { padding: "16px" },
   cardHeader: {
     display: "flex",
     justifyContent: "space-between",
@@ -741,7 +713,7 @@ const styles = {
     marginBottom: "8px",
   },
   cardTitle: {
-    fontSize: "18px",
+    fontSize: "clamp(16px, 3vw, 18px)",
     fontWeight: "bold",
     marginBottom: "8px",
     color: "#222",
@@ -752,6 +724,7 @@ const styles = {
     marginBottom: "10px",
     fontSize: "12px",
     color: "#666",
+    flexWrap: "wrap",
   },
   cardText: {
     color: "#666",
@@ -766,31 +739,27 @@ const styles = {
     display: "flex",
     alignItems: "center",
     gap: "5px",
+    flexWrap: "wrap",
   },
-  locationIcon: {
-    fontSize: "11px",
-  },
+  locationIcon: { fontSize: "11px" },
   bookBtn: {
-    display: "inline-block",
+    display: "block",
     backgroundColor: "#28a745",
     color: "#fff",
-    padding: "8px 16px",
+    padding: "10px",
     borderRadius: "6px",
     textDecoration: "none",
-    fontSize: "13px",
+    fontSize: "14px",
     fontWeight: "500",
     textAlign: "center",
     width: "100%",
   },
-  testimonialSection: {
-    padding: "60px 20px",
-    backgroundColor: "#f0f7ff",
-  },
+  testimonialSection: { padding: "60px 20px", backgroundColor: "#f0f7ff" },
   testimonialContainer: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    gap: "20px",
+    gap: "15px",
     maxWidth: "800px",
     margin: "40px auto 0",
   },
@@ -805,12 +774,14 @@ const styles = {
     justifyContent: "center",
     cursor: "pointer",
     boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+    minWidth: "44px",
+    minHeight: "44px",
   },
   testimonialCard: {
     flex: 1,
     backgroundColor: "#fff",
     borderRadius: "16px",
-    padding: "30px",
+    padding: "30px 20px",
     textAlign: "center",
     boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
   },
@@ -821,43 +792,35 @@ const styles = {
     borderRadius: "50%",
     overflow: "hidden",
   },
-  testimonialImage: {
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-  },
+  testimonialImage: { width: "100%", height: "100%", objectFit: "cover" },
   testimonialRating: {
     display: "flex",
     justifyContent: "center",
     gap: "5px",
     marginBottom: "15px",
+    flexWrap: "wrap",
   },
-  testimonialStar: {
-    color: "#ffc107",
-    fontSize: "18px",
-  },
+  testimonialStar: { color: "#ffc107", fontSize: "clamp(14px, 3vw, 18px)" },
   testimonialText: {
-    fontSize: "16px",
+    fontSize: "clamp(13px, 2.5vw, 16px)",
     lineHeight: "1.6",
     color: "#555",
     marginBottom: "20px",
     fontStyle: "italic",
   },
   testimonialName: {
-    fontSize: "18px",
+    fontSize: "clamp(16px, 3vw, 18px)",
     fontWeight: "600",
     color: "#333",
     marginBottom: "5px",
   },
-  testimonialCountry: {
-    fontSize: "14px",
-    color: "#666",
-  },
+  testimonialCountry: { fontSize: "clamp(12px, 2.5vw, 14px)", color: "#666" },
   testimonialDots: {
     display: "flex",
     justifyContent: "center",
     gap: "10px",
     marginTop: "30px",
+    flexWrap: "wrap",
   },
   dot: {
     width: "10px",
@@ -866,22 +829,19 @@ const styles = {
     border: "none",
     cursor: "pointer",
     transition: "all 0.3s",
+    minWidth: "10px",
+    minHeight: "10px",
   },
-  contactSection: {
-    padding: "60px 20px",
-    backgroundColor: "#fff",
-  },
+  contactSection: { padding: "60px 20px", backgroundColor: "#fff" },
   contactGrid: {
     display: "grid",
-    gridTemplateColumns: "1fr 1fr",
+    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
     gap: "40px",
     alignItems: "center",
   },
-  contactInfo: {
-    padding: "20px",
-  },
+  contactInfo: { padding: "20px" },
   contactTitle: {
-    fontSize: "32px",
+    fontSize: "clamp(24px, 4vw, 32px)",
     fontWeight: "bold",
     marginBottom: "15px",
     color: "#222",
@@ -889,25 +849,19 @@ const styles = {
   contactText: {
     color: "#666",
     marginBottom: "25px",
-    fontSize: "16px",
+    fontSize: "clamp(14px, 3vw, 16px)",
   },
-  contactDetails: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "20px",
-  },
+  contactDetails: { display: "flex", flexDirection: "column", gap: "20px" },
   contactItem: {
     display: "flex",
     alignItems: "center",
     gap: "15px",
+    flexWrap: "wrap",
   },
-  contactIcon: {
-    fontSize: "24px",
-    color: "#007bff",
-  },
+  contactIcon: { fontSize: "24px", color: "#007bff" },
   contactForm: {
     backgroundColor: "#f8f9fa",
-    padding: "30px",
+    padding: "25px",
     borderRadius: "12px",
   },
   contactInput: {
@@ -944,17 +898,14 @@ const styles = {
     color: "#fff",
     textAlign: "center",
   },
-  ctaContent: {
-    maxWidth: "600px",
-    margin: "0 auto",
-  },
+  ctaContent: { maxWidth: "600px", margin: "0 auto" },
   ctaTitle: {
-    fontSize: "clamp(28px, 4vw, 36px)",
+    fontSize: "clamp(24px, 4vw, 36px)",
     fontWeight: "bold",
     marginBottom: "15px",
   },
   ctaText: {
-    fontSize: "18px",
+    fontSize: "clamp(14px, 3vw, 18px)",
     marginBottom: "30px",
     opacity: 0.95,
   },
@@ -971,6 +922,7 @@ const styles = {
     borderRadius: "8px",
     textDecoration: "none",
     fontWeight: "600",
+    display: "inline-block",
   },
   ctaBtnSecondary: {
     backgroundColor: "transparent",
@@ -980,15 +932,14 @@ const styles = {
     textDecoration: "none",
     fontWeight: "600",
     border: "2px solid #fff",
+    display: "inline-block",
   },
 };
 
-// Add hover effects
+// Add hover effects and responsive styles
 const styleSheet = document.createElement("style");
 styleSheet.textContent = `
-  .hero-btn-primary:hover, .hero-btn-secondary:hover, .hero-btn-booking:hover {
-    transform: translateY(-2px);
-  }
+  .hero-btn-primary:hover, .hero-btn-secondary:hover, .hero-btn-booking:hover { transform: translateY(-2px); }
   .hero-btn-primary:hover { background-color: #0056b3 !important; }
   .hero-btn-secondary:hover { background-color: rgba(255,255,255,0.1) !important; }
   .hero-btn-booking:hover { background-color: #218838 !important; }
@@ -1002,23 +953,48 @@ styleSheet.textContent = `
   .cta-btn-secondary:hover { background-color: rgba(255,255,255,0.1) !important; transform: translateY(-2px); }
   
   @media (max-width: 768px) {
-    .contact-grid { grid-template-columns: 1fr !important; }
     .hero-buttons { flex-direction: column; align-items: center; }
-    .hero-btn-primary, .hero-btn-secondary, .hero-btn-booking { width: 100%; max-width: 250px; text-align: center; }
+    .hero-btn-primary, .hero-btn-secondary, .hero-btn-booking { width: 100%; max-width: 220px; text-align: center; }
     .heading-container { flex-direction: column; text-align: center; }
     .testimonial-container { gap: 10px; }
-    .testimonial-card { padding: 20px; }
+    .testimonial-card { padding: 20px 15px; }
+    .testimonial-nav { width: 36px; height: 36px; min-width: 36px; min-height: 36px; }
+    .testimonial-image-wrapper { width: 60px; height: 60px; }
+    .contact-grid { grid-template-columns: 1fr !important; text-align: center; }
+    .contact-item { justify-content: center; }
+    .contact-details { align-items: center; }
   }
   
   @media (max-width: 480px) {
-    .section, .section-light, .testimonial-section { padding: 40px 16px; }
+    .section, .section-light, .testimonial-section, .contact-section, .cta-section { padding: 40px 16px; }
     .grid { gap: 16px; }
     .card-img { height: 160px; }
     .card-body { padding: 12px; }
     .card-title { font-size: 16px; }
-    .testimonial-text { font-size: 14px; }
-    .contact-form { padding: 20px; }
+    .testimonial-text { font-size: 13px; }
+    .testimonial-name { font-size: 16px; }
+    .contact-form { padding: 20px; margin: 0 10px; }
+    .hero-title { font-size: 28px; }
+    .hero-subtitle { font-size: 14px; }
+    .features-grid { gap: 20px; }
+    .feature-card { padding: 20px 15px; }
+    .cta-buttons { flex-direction: column; align-items: center; }
+    .cta-btn-primary, .cta-btn-secondary { width: 100%; max-width: 200px; text-align: center; }
+    .more-btn { font-size: 12px; padding: 8px 16px; }
   }
+  
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .features-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+  
+  @media (min-width: 1025px) {
+    .grid { grid-template-columns: repeat(4, 1fr) !important; }
+    .features-grid { grid-template-columns: repeat(4, 1fr) !important; }
+  }
+  
+  button, a, [role="button"] { min-height: 44px; min-width: 44px; }
+  img { max-width: 100%; height: auto; }
 `;
 document.head.appendChild(styleSheet);
 
