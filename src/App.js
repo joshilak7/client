@@ -14,30 +14,40 @@ import PlaceDetail from "./pages/PlaceDetail";
 import Bookings from "./pages/Bookings";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import BookingForm from "./pages/BookingForm";
+import BookingSuccess from "./pages/BookingSuccess";
 
 function App() {
   return (
     <AuthProvider>
       <Router>
+        <GoogleAnalytics />
         <div className="App">
           <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/cars" element={<Cars />} />
-            <Route path="/cars/:id" element={<CarDetail />} />
-            <Route path="/places" element={<Places />} />
-            <Route path="/places/:id" element={<PlaceDetail />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route
-              path="/bookings"
-              element={
-                <PrivateRoute>
-                  <Bookings />
-                </PrivateRoute>
-              }
-            />
-          </Routes>
+          <main style={{ minHeight: "calc(100vh - 200px)" }}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/cars" element={<Cars />} />
+              <Route path="/cars/:id" element={<CarDetail />} />
+              <Route path="/places" element={<Places />} />
+              <Route path="/places/:id" element={<PlaceDetail />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/booking" element={<BookingForm />} />
+              <Route
+                path="/booking-success/:reference"
+                element={<BookingSuccess />}
+              />
+              <Route
+                path="/bookings"
+                element={
+                  <PrivateRoute>
+                    <Bookings />
+                  </PrivateRoute>
+                }
+              />
+            </Routes>
+          </main>
           <WhatsAppButton />
           <Footer />
         </div>

@@ -11,6 +11,7 @@ import {
   FaHeadset,
   FaChevronLeft,
   FaChevronRight,
+  FaCalendarCheck,
 } from "react-icons/fa";
 
 const Home = () => {
@@ -20,7 +21,7 @@ const Home = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
-  // Demo Cars (without price)
+  // Demo Cars
   const getDemoCars = () => {
     return [
       {
@@ -70,7 +71,7 @@ const Home = () => {
     ];
   };
 
-  // Demo Places (without entry fee) - Fixed Goa image URL
+  // Demo Places
   const getDemoPlaces = () => {
     return [
       {
@@ -233,6 +234,9 @@ const Home = () => {
               <Link to="/places" style={styles.heroBtnSecondary}>
                 Explore Places
               </Link>
+              <Link to="/booking" style={styles.heroBtnBooking}>
+                Book Now →
+              </Link>
             </div>
           </div>
         </div>
@@ -290,7 +294,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Featured Cars */}
+      {/* Featured Cars Section with Book Now Button */}
       <section style={styles.sectionLight}>
         <div style={styles.container}>
           <div style={styles.headingContainer}>
@@ -339,6 +343,13 @@ const Home = () => {
                   <p style={styles.cardText}>
                     {car.description?.substring(0, 100) || car.description}...
                   </p>
+                  <Link
+                    to={`/booking?carId=${car._id}`}
+                    style={styles.bookNowBtn}
+                  >
+                    <FaCalendarCheck style={{ marginRight: "8px" }} />
+                    Book Now
+                  </Link>
                 </div>
               </div>
             ))}
@@ -346,7 +357,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Popular Destinations */}
+      {/* Popular Destinations Section with Book Now Button */}
       <section style={styles.section}>
         <div style={styles.container}>
           <div style={styles.headingContainer}>
@@ -393,6 +404,18 @@ const Home = () => {
                     {place.description?.substring(0, 100) || place.description}
                     ...
                   </p>
+                  <div style={styles.cardFooter}>
+                    <span style={styles.tourPrice}>
+                      Tour: ₹{place.tourPrice || 1500}/person
+                    </span>
+                    <Link
+                      to={`/booking?placeId=${place._id}`}
+                      style={styles.bookNowBtn}
+                    >
+                      <FaCalendarCheck style={{ marginRight: "8px" }} />
+                      Book Tour
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}
@@ -484,6 +507,9 @@ const Home = () => {
             <Link to="/places" style={styles.ctaBtnSecondary}>
               Plan a Trip
             </Link>
+            <Link to="/booking" style={styles.ctaBtnSpecial}>
+              Customize Your Package →
+            </Link>
           </div>
         </div>
       </section>
@@ -556,6 +582,19 @@ const styles = {
     color: "#fff",
     fontWeight: "600",
     border: "2px solid #fff",
+    transition: "all 0.3s",
+    display: "flex",
+    alignItems: "center",
+    minHeight: "50px",
+  },
+  heroBtnBooking: {
+    padding: "14px 32px",
+    fontSize: "16px",
+    borderRadius: "8px",
+    textDecoration: "none",
+    backgroundColor: "#28a745",
+    color: "#fff",
+    fontWeight: "600",
     transition: "all 0.3s",
     display: "flex",
     alignItems: "center",
@@ -637,7 +676,7 @@ const styles = {
   },
   grid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
     gap: "30px",
   },
   card: {
@@ -647,6 +686,8 @@ const styles = {
     boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
     transition: "transform 0.3s",
     cursor: "pointer",
+    display: "flex",
+    flexDirection: "column",
   },
   cardImageWrapper: {
     position: "relative",
@@ -669,6 +710,9 @@ const styles = {
   },
   cardBody: {
     padding: "20px",
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
   },
   cardHeader: {
     display: "flex",
@@ -700,12 +744,14 @@ const styles = {
     marginBottom: "10px",
     fontSize: "13px",
     color: "#666",
+    flexWrap: "wrap",
   },
   cardText: {
     color: "#666",
     lineHeight: "1.6",
     fontSize: "14px",
     marginBottom: "15px",
+    flex: 1,
   },
   location: {
     color: "#007bff",
@@ -718,6 +764,36 @@ const styles = {
   },
   locationIcon: {
     fontSize: "12px",
+  },
+  cardFooter: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: "10px",
+    flexWrap: "wrap",
+    gap: "10px",
+  },
+  tourPrice: {
+    fontSize: "14px",
+    fontWeight: "600",
+    color: "#28a745",
+  },
+  bookNowBtn: {
+    backgroundColor: "#28a745",
+    color: "#fff",
+    padding: "10px 16px",
+    borderRadius: "8px",
+    textDecoration: "none",
+    fontSize: "14px",
+    fontWeight: "600",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    transition: "all 0.3s",
+    marginTop: "10px",
+    border: "none",
+    cursor: "pointer",
+    textAlign: "center",
   },
   testimonialSection: {
     padding: "60px 20px",
@@ -863,6 +939,18 @@ const styles = {
     display: "flex",
     alignItems: "center",
   },
+  ctaBtnSpecial: {
+    backgroundColor: "#28a745",
+    color: "#fff",
+    padding: "12px 30px",
+    borderRadius: "8px",
+    textDecoration: "none",
+    fontWeight: "600",
+    transition: "all 0.3s",
+    minHeight: "48px",
+    display: "flex",
+    alignItems: "center",
+  },
 };
 
 // Add hover effects and responsive styles
@@ -878,6 +966,12 @@ styleSheet.textContent = `
   .hero-btn-secondary:hover {
     background-color: rgba(255, 255, 255, 0.1) !important;
     transform: translateY(-2px);
+  }
+  
+  .hero-btn-booking:hover {
+    background-color: #218838 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
   }
   
   .card:hover {
@@ -901,6 +995,11 @@ styleSheet.textContent = `
     transform: translateX(5px);
   }
   
+  .book-now-btn:hover {
+    background-color: #218838 !important;
+    transform: translateY(-2px);
+  }
+  
   .cta-btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
@@ -908,6 +1007,11 @@ styleSheet.textContent = `
   
   .cta-btn-secondary:hover {
     background-color: rgba(255,255,255,0.15) !important;
+    transform: translateY(-2px);
+  }
+  
+  .cta-btn-special:hover {
+    background-color: #218838 !important;
     transform: translateY(-2px);
   }
   
@@ -923,7 +1027,8 @@ styleSheet.textContent = `
     }
     
     .hero-btn-primary,
-    .hero-btn-secondary {
+    .hero-btn-secondary,
+    .hero-btn-booking {
       width: 100%;
       max-width: 250px;
       justify-content: center;
@@ -949,6 +1054,10 @@ styleSheet.textContent = `
     
     .section-title {
       font-size: 28px !important;
+    }
+    
+    .grid {
+      grid-template-columns: 1fr !important;
     }
   }
   
@@ -987,7 +1096,8 @@ styleSheet.textContent = `
     }
     
     .cta-btn-primary,
-    .cta-btn-secondary {
+    .cta-btn-secondary,
+    .cta-btn-special {
       width: 100%;
       max-width: 250px;
       justify-content: center;
@@ -1000,6 +1110,14 @@ styleSheet.textContent = `
     
     .testimonial-star {
       font-size: 14px;
+    }
+    
+    .card-footer {
+      flex-direction: column;
+    }
+    
+    .book-now-btn {
+      width: 100%;
     }
   }
   
@@ -1024,6 +1142,10 @@ styleSheet.textContent = `
     .dot {
       min-width: 10px;
       min-height: 10px;
+    }
+    
+    .book-now-btn {
+      min-height: 44px;
     }
   }
   
@@ -1076,6 +1198,10 @@ styleSheet.textContent = `
     
     .rating {
       background-color: #3a3a3a;
+    }
+    
+    .card-details {
+      color: #aaa;
     }
   }
   

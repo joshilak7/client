@@ -52,44 +52,6 @@ const Footer = () => {
               perfect journey across India. We provide the best travel
               experience with quality service and customer satisfaction.
             </p>
-            <div style={styles.socials}>
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={styles.socialLink}
-                aria-label="Facebook"
-              >
-                <FaFacebook style={styles.socialIcon} />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={styles.socialLink}
-                aria-label="Twitter"
-              >
-                <FaTwitter style={styles.socialIcon} />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={styles.socialLink}
-                aria-label="Instagram"
-              >
-                <FaInstagram style={styles.socialIcon} />
-              </a>
-              <a
-                href="https://youtube.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={styles.socialLink}
-                aria-label="YouTube"
-              >
-                <FaYoutube style={styles.socialIcon} />
-              </a>
-            </div>
           </div>
 
           {/* Quick Links */}
@@ -178,6 +140,9 @@ const Footer = () => {
                   <span style={styles.contactLabel}>Phone</span>
                   <a href="tel:+919274713544" style={styles.contactLink}>
                     +91 92747 13544
+                  </a>
+                  <a href="tel:+919274713544" style={styles.contactLink}>
+                    +91 
                   </a>
                 </div>
               </div>
