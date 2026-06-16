@@ -66,9 +66,8 @@ const BookingForm = () => {
       console.error("Error fetching data:", error);
       setCars([
         { _id: "1", name: "Maruti Suzuki Swift" },
-        { _id: "2", name: "Hyundai Creta" },
-        { _id: "3", name: "Tata Nexon EV" },
-        { _id: "4", name: "Toyota Innova" },
+        { _id: "2", name: "Maruti Suzuki Dzire" },
+        { _id: "3", name: "Maruti Suzuki Ertiga" },
       ]);
       setPlaces([
         { _id: "1", name: "Taj Mahal", city: "Agra" },

@@ -28,46 +28,46 @@ const Home = () => {
       {
         _id: "1",
         name: "Maruti Suzuki Swift",
-        description:
-          "Perfect hatchback for city rides and family trips. Excellent fuel efficiency.",
-        type: "Hatchback",
-        seatingCapacity: 5,
+        brand: "Maruti Suzuki",
+        model: "Swift",
+        year: 2024,
+        seats: 5,
+        transmission: "Manual",
+        fuelType: "Petrol",
         image:
-          "https://www.marutisuzuki.com/-/media/marutisuzuki/global/swift/2022/swift-2022-left-front-three-quarter-5.webp",
+          "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800",
+        description:
+          "Compact hatchback with excellent mileage and city driving comfort.",
         rating: 4.5,
       },
       {
         _id: "2",
-        name: "Hyundai Creta",
-        description:
-          "Premium SUV with modern features, spacious interior, and powerful engine.",
-        type: "SUV",
-        seatingCapacity: 5,
+        name: "Maruti Suzuki Dzire",
+        brand: "Maruti Suzuki",
+        model: "Dzire",
+        year: 2024,
+        seats: 5,
+        transmission: "Automatic",
+        fuelType: "Petrol",
         image:
-          "https://www.hyundai.com/content/dam/hyundai/in/en/data/find-a-car/creta/gallery/creta-exterior-right-front-three-quarter-3.png",
-        rating: 4.7,
-      },
-      {
-        _id: "3",
-        name: "Tata Nexon EV",
+          "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800",
         description:
-          "Electric SUV with zero emissions, powerful performance, and impressive range.",
-        type: "Electric SUV",
-        seatingCapacity: 5,
-        image:
-          "https://www.tatamotors.com/wp-content/uploads/2023/04/Nexon-EV-front-view.jpg",
+          "Comfortable sedan with premium features and great fuel efficiency.",
         rating: 4.6,
       },
       {
-        _id: "4",
-        name: "Toyota Innova",
-        description:
-          "Spacious MPV perfect for group travel with 7-8 seats. Comfortable for long journeys.",
-        type: "MPV",
-        seatingCapacity: 7,
+        _id: "3",
+        name: "Maruti Suzuki Ertiga",
+        brand: "Maruti Suzuki",
+        model: "Ertiga",
+        year: 2024,
+        seats: 7,
+        transmission: "Manual",
+        fuelType: "Petrol",
         image:
-          "https://www.toyotabharat.com/img/innova-crysta/gallery/exterior/Innova-Crysta-Exterior-1.webp",
-        rating: 4.8,
+          "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=800",
+        description: "Spacious family MPV ideal for family and group travel.",
+        rating: 4.7,
       },
     ];
   };
